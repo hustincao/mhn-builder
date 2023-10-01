@@ -1,0 +1,58 @@
+<script>
+    export const armors = [
+        {
+            "Armor Set": "Leather Set",
+            "Minimum Grade": 1,
+            "Helm Skills":
+                "Critical Eye Lv.1 (Grade 2)\nIce Resistance Lv.1 (Grade 4)",
+            "Mail Skills":
+                "Attack Boost Lv.1 (Grade 2)\nFire Resistance Lv.1 (Grade 4)",
+            "Arms Skills":
+                "Defense Boost Lv.1 (Grade 2)\nThunder Resistance Lv.1 (Grade 4)",
+            "Waist Skills":
+                "Health Boost Lv.1 (Grade 2)\nWater Resistance Lv.1 (Grade 4)",
+            "Legs Skills":
+                "Poison Resistance Lv.1 (Grade 2)\nParalysis Resistance Lv.1 (Grade 4)",
+        },
+        {
+            "Armor Set": "Jagras Set",
+            "Minimum Grade": 1,
+            "Helm Skills":
+                "Firm Foothold Lv.1 (Grade 2)\nFirm Foothold Lv.2 (Grade 6)",
+            "Mail Skills":
+                "Rising Tide Lv.1 (Grade 2)\nRising Tide Lv.2 (Grade 6)",
+            "Arms Skills":
+                "Firm Foothold Lv.1 (Grade 2)\nWater Attack Lv.1 (Grade 4)",
+            "Waist Skills":
+                "Fortify Lv.1 (Grade 2)\nRising Tide Lv.1 (Grade 4)\nFortify Lv.2 (Grade 6)",
+            "Legs Skills":
+                "Water Attack Lv.1 (Grade 2)\nWater Attack Lv.2 (Grade 6)",
+        },
+        {
+            "Armor Set": "Kulu Set",
+            "Minimum Grade": 1,
+            "Helm Skills":
+                "Lock On Lv.1 (Grade 2)\nCritical Eye Lv.1 (Grade 4)",
+            "Mail Skills": "Guts Lv. 1 (Grade 2)\nGuts Lv. 2 (Grade 6)",
+            "Arms Skills":
+                "Last Stand Lv.1 (Grade 2)\nCritical Eye Lv.1 (Grade 4)",
+            "Waist Skills":
+                "Last Stand Lv.1 (Grade 2)\nEvade Extender Lv.1 (Grade 4)",
+            "Legs Skills":
+                "Critical Eye Lv.1 (Grade 2)\nCritical Eye Lv.2 (Grade 6)",
+        },
+        {
+            "Armor Set": "Pukei Set",
+            "Minimum Grade": 1,
+            "Helm Skills":
+                "Focus Lv.1 (Grade 2)\nHealth Boost Lv.1 (Grade 4)\nHealth Boost Lv.2 (Grade 6)",
+            "Mail Skills": "Poison Resist Lv.1 (Grade 2)\nFocus Lv.1 (Grade 4)",
+            "Arms Skills":
+                "Poison Attack Lv.1 (Grade 2)\nPoison Resistance Lv.1 (Grade 4)",
+            "Waist Skills":
+                "Poison Attack Lv.1 (Grade 2)\nPoison Attack Lv.2 (Grade 6)",
+            "Legs Skills":
+                "Health Resistance Lv.1 (Grade 2)\nPoison Resistance Lv.1 (Grade 4)",
+        },
+    ];
+</script>
