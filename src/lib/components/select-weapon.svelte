@@ -18,7 +18,7 @@
 <div class="flex overflow-x-scroll whitespace-nowrap gap-x-4">
     {#each list as armor}
         {#if isFiltered(armor)}
-            <ArmorButton armorName={armor[nameKey]} armorSkills={armor[valueKey]} isSelected={selectedValue === armor[nameKey]} selectedGrade={selectedGrade} onClick={()=>{selectedValue = armor}} />
+            <ArmorButton armorName={armor[nameKey]} armorSkills={armor[valueKey]} isSelected={selectedValue === armor} selectedGrade={selectedGrade} onClick={()=>{selectedValue = armor}} />
         {/if}
     {/each}
 </div>

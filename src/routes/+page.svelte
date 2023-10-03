@@ -1,25 +1,50 @@
 <script>
-    import { CheckBox, SelectArmor } from "$lib";
-    import {getSkillLevelGrade} from "$lib/utils";
+    import { CheckBox, SelectArmor, SelectWeapon } from "$lib";
+    import { getSkillLevelGrade } from "$lib/utils";
     import { onMount } from "svelte";
-    let armors;
+    let armors, swordandshields;
     const armorGrades = [20, 34, 49, 65, 82, 100, 119, 139, 160, 182];
 
-    let selectedHelm = "";
-    let selectedMail = "";
-    let selectedArms = "";
-    let selectedWaist = "";
-    let selectedLegs = "";
+    let selectedWeapon = {};
+    let selectedHelm = {};
+    let selectedMail = {};
+    let selectedArms = {};
+    let selectedWaist = {};
+    let selectedLegs = {};
 
     onMount(async () => {
         armors = await fetch("/armors.json").then((r) => r.json());
-
-        selectedHelm = armors[0]["Armor Set"];
-        selectedMail = armors[0]["Armor Set"];
-        selectedArms = armors[0]["Armor Set"];
-        selectedWaist = armors[0]["Armor Set"];
-        selectedLegs = armors[0]["Armor Set"];
+        swordandshields = await fetch("/sword-and-shields.json").then((r) =>
+            r.json()
+        );
+        selectedWeapon = swordandshields[0];
+        selectedHelm = armors[0];
+        selectedMail = armors[0];
+        selectedArms = armors[0];
+        selectedWaist = armors[0];
+        selectedLegs = armors[0];
     });
+
+    $: attack = selectedWeapon?.hasOwnProperty("Attacks")
+        ? selectedWeapon["Attacks"].split(",")[
+              selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+          ]
+        : 0;
+
+    // $: special_attack =
+    //     selectedWeapon?.hasOwnProperty("Element") &&
+    //     selectedWeapon["Element"] !== "None"
+    //         ? selectedWeapon["Special Attacks"].split(",")[
+    //               selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+    //           ]
+    //         : 0;
+    $: fire_attack =
+        selectedWeapon?.hasOwnProperty("Element") &&
+        selectedWeapon["Element"] === "Fire"
+            ? selectedWeapon["Special Attacks"].split(",")[
+                  selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+              ]
+            : 0;
 
     $: defense =
         armorGrades[selectedHelmGrade - 1] +
@@ -30,13 +55,14 @@
 
     let isShowMoreOptions = false;
 
-    let isWeaponEnabled = false;
+    let isWeaponEnabled = true;
     let isHelmEnabled = true;
     let isMailEnabled = true;
     let isArmsEnabled = true;
     let isWaistEnabled = true;
     let isLegsEnabled = true;
 
+    let selectedWeaponGrade = 10;
     let selectedHelmGrade = 10;
     let selectedMailGrade = 10;
     let selectedArmsGrade = 10;
@@ -47,14 +73,14 @@
 
     let equippedSkills = {};
 
-
     function getSkills(inputSkills, grade) {
+        if (!inputSkills) return {};
         let skills = inputSkills.split("\n");
         let tempSkills = {};
         for (let i = 0; i < skills.length; i++) {
             let skill = skills[i];
-            let {name, level, grade} = getSkillLevelGrade(skill);
-            console.log(name, level, grade);
+            let { name, level, grade } = getSkillLevelGrade(skill);
+            // console.log(name, level, grade);
             tempSkills[name] = level;
         }
         return tempSkills;
@@ -62,11 +88,22 @@
 
     $: {
         equippedSkills = {};
+        if (selectedWeapon) {
+            for (const [skill, level] of Object.entries(
+                getSkills(
+                    selectedWeapon["Equipment Skills"],
+                    selectedWeaponGrade
+                )
+            )) {
+                if (skill in equippedSkills) equippedSkills[skill] += level;
+                else equippedSkills[skill] = level;
+            }
+        }
 
         if (selectedHelm) {
-            let armor = armors.find((a) => a["Armor Set"] === selectedHelm);
+            // let armor = armors.find((a) => a["Armor Set"] === selectedHelm);
             for (const [skill, level] of Object.entries(
-                getSkills(armor["Helm Skills"], 10)
+                getSkills(selectedHelm["Helm Skills"], selectedHelmGrade)
             )) {
                 if (skill in equippedSkills) equippedSkills[skill] += level;
                 else equippedSkills[skill] = level;
@@ -74,9 +111,9 @@
         }
 
         if (selectedMail) {
-            let armor = armors.find((a) => a["Armor Set"] === selectedMail);
+            // let armor = armors.find((a) => a["Armor Set"] === selectedMail);
             for (const [skill, level] of Object.entries(
-                getSkills(armor["Mail Skills"], 10)
+                getSkills(selectedMail["Mail Skills"], selectedMailGrade)
             )) {
                 if (skill in equippedSkills) equippedSkills[skill] += level;
                 else equippedSkills[skill] = level;
@@ -84,9 +121,9 @@
         }
 
         if (selectedArms) {
-            let armor = armors.find((a) => a["Armor Set"] === selectedArms);
+            // let armor = armors.find((a) => a["Armor Set"] === selectedArms);
             for (const [skill, level] of Object.entries(
-                getSkills(armor["Arms Skills"], 10)
+                getSkills(selectedArms["Arms Skills"], selectedArmsGrade)
             )) {
                 if (skill in equippedSkills) equippedSkills[skill] += level;
                 else equippedSkills[skill] = level;
@@ -94,9 +131,9 @@
         }
 
         if (selectedWaist) {
-            let armor = armors.find((a) => a["Armor Set"] === selectedWaist);
+            // let armor = armors.find((a) => a["Armor Set"] === selectedWaist);
             for (const [skill, level] of Object.entries(
-                getSkills(armor["Waist Skills"], 10)
+                getSkills(selectedWaist["Waist Skills"], selectedWaistGrade)
             )) {
                 if (skill in equippedSkills) equippedSkills[skill] += level;
                 else equippedSkills[skill] = level;
@@ -104,9 +141,9 @@
         }
 
         if (selectedLegs) {
-            let armor = armors.find((a) => a["Armor Set"] === selectedLegs);
+            // let armor = armors.find((a) => a["Armor Set"] === selectedLegs);
             for (const [skill, level] of Object.entries(
-                getSkills(armor["Legs Skills"], 10)
+                getSkills(selectedLegs["Legs Skills"], selectedLegsGrade)
             )) {
                 if (skill in equippedSkills) equippedSkills[skill] += level;
                 else equippedSkills[skill] = level;
@@ -120,11 +157,11 @@
         <div class="bg-green-200">
             <p>Health: 0</p>
             <p>Defense: {defense}</p>
-            <p>Attack: 0</p>
+            <p>Attack: {attack}</p>
             <p>Affinity: 0</p>
             <p>Poison: 0</p>
             <p>Paralysis: 0</p>
-            <p>Fire: 0</p>
+            <p>Fire: {fire_attack}</p>
             <p>Water: 0</p>
             <p>Thunder: 0</p>
             <p>Ice: 0</p>
@@ -151,13 +188,14 @@
             >
         </div>
         {#if isShowMoreOptions}
-            <div class="flex">
+            <div class="flex flex-wrap gap-2 my-2">
                 <div class="flex">
                     <label class="whitespace-nowrap" for="helm-grade"
                         >Helm Grade</label
                     >
                     <input
                         bind:value={selectedHelmGrade}
+                        class="w-10"
                         id="helm-grade"
                         type="number"
                         min="1"
@@ -170,6 +208,7 @@
                     >
                     <input
                         bind:value={selectedMailGrade}
+                        class="w-10"
                         id="mail-grade"
                         type="number"
                         min="1"
@@ -182,6 +221,7 @@
                     >
                     <input
                         bind:value={selectedArmsGrade}
+                        class="w-10"
                         id="arms-grade"
                         type="number"
                         min="1"
@@ -194,6 +234,7 @@
                     >
                     <input
                         bind:value={selectedWaistGrade}
+                        class="w-10"
                         id="waist-grade"
                         type="number"
                         min="1"
@@ -206,6 +247,7 @@
                     >
                     <input
                         bind:value={selectedLegsGrade}
+                        class="w-10"
                         id="legs-grade"
                         type="number"
                         min="1"
@@ -223,8 +265,18 @@
             <CheckBox label={"Legs"} bind:isEnabled={isLegsEnabled} />
         </div>
         <div class="bg-red-400">
+            {#if isWeaponEnabled}
+                <SelectWeapon
+                    list={swordandshields}
+                    nameKey={"Tree"}
+                    valueKey={"Equipment Skills"}
+                    selectedGrade={selectedWeaponGrade}
+                    bind:selectedValue={selectedWeapon}
+                    filter={searchText}
+                />
+            {/if}
             {#if isHelmEnabled}
-                <SelectArmor
+                <SelectWeapon
                     list={armors}
                     nameKey={"Armor Set"}
                     valueKey={"Helm Skills"}
@@ -234,7 +286,7 @@
                 />
             {/if}
             {#if isMailEnabled}
-                <SelectArmor
+                <SelectWeapon
                     list={armors}
                     nameKey={"Armor Set"}
                     valueKey={"Mail Skills"}
@@ -244,7 +296,7 @@
                 />
             {/if}
             {#if isArmsEnabled}
-                <SelectArmor
+                <SelectWeapon
                     list={armors}
                     nameKey={"Armor Set"}
                     valueKey={"Arms Skills"}
@@ -254,7 +306,7 @@
                 />
             {/if}
             {#if isWaistEnabled}
-                <SelectArmor
+                <SelectWeapon
                     list={armors}
                     nameKey={"Armor Set"}
                     valueKey={"Waist Skills"}
@@ -264,7 +316,7 @@
                 />
             {/if}
             {#if isLegsEnabled}
-                <SelectArmor
+                <SelectWeapon
                     list={armors}
                     nameKey={"Armor Set"}
                     valueKey={"Legs Skills"}
@@ -276,3 +328,10 @@
         </div>
     </div>
 </div>
+
+<style>
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        opacity: 1;
+    }
+</style>

@@ -2,3 +2,4 @@
 export { default as CheckBox } from './components/checkbox.svelte';
 export { default as SelectArmor } from './components/select-armor.svelte';
 export { default as ArmorButton} from './components/armor-button.svelte';
+export { default as SelectWeapon} from './components/select-weapon.svelte';
