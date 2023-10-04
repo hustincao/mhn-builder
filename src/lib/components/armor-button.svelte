@@ -10,17 +10,24 @@
 </script>
 
 <button
-    class={"hover:bg-slate-400 " + (isSelected && "bg-green-300")}
+    class={"hover:bg-slate-400 rounded-lg p-2 " +
+        (isSelected && "bg-slate-100")}
     on:click={onClick}
 >
-    <div class="flex flex-col">
-        {armorName}
+    <div class="flex flex-col justify-start h-full">
+        <p class="font-bold">{armorName}</p>
         {#each armorSkills.split("\n") as skill}
             {@const { name, level, grade } = getSkillLevelGrade(skill)}
-            <p class={"flex items-center font-bold " + (grade > selectedGrade && "font-normal line-through")}>{skill}
-            {#if grade > selectedGrade}
-                <svg class="h-4 w-4 fill-red-500" viewBox="0 0 384 512">{@html x_icon}</svg>
-            {/if}
+            <p
+                class={"flex items-center " +
+                    (grade > selectedGrade && "font-normal line-through")}
+            >
+                {#if grade > selectedGrade}
+                    <svg class="h-4 w-4 fill-red-500" viewBox="0 0 384 512"
+                        >{@html x_icon}</svg
+                    >
+                {/if}
+                {skill}
             </p>
         {/each}
     </div>

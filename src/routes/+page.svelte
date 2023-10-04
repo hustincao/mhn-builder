@@ -2,7 +2,7 @@
     import { CheckBox, SelectArmor, SelectWeapon } from "$lib";
     import { getSkillLevelGrade } from "$lib/utils";
     import { onMount } from "svelte";
-    let armors, swordandshields;
+    let armors, swordandshields, skills;
     const armorGrades = [20, 34, 49, 65, 82, 100, 119, 139, 160, 182];
 
     let selectedWeapon = {};
@@ -17,6 +17,7 @@
         swordandshields = await fetch("/sword-and-shields.json").then((r) =>
             r.json()
         );
+        skills = await fetch("/skills.json").then((r) => r.json());
         selectedWeapon = swordandshields[0];
         selectedHelm = armors[0];
         selectedMail = armors[0];
@@ -31,16 +32,45 @@
           ]
         : 0;
 
-    // $: special_attack =
-    //     selectedWeapon?.hasOwnProperty("Element") &&
-    //     selectedWeapon["Element"] !== "None"
-    //         ? selectedWeapon["Special Attacks"].split(",")[
-    //               selectedWeaponGrade - selectedWeapon["Minimum Grade"]
-    //           ]
-    //         : 0;
+    $: poison_attack =
+        selectedWeapon?.hasOwnProperty("Element") &&
+        selectedWeapon["Element"] === "Poison"
+            ? selectedWeapon["Special Attacks"].split(",")[
+                  selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+              ]
+            : 0;
+    $: paralysis_attack =
+        selectedWeapon?.hasOwnProperty("Element") &&
+        selectedWeapon["Element"] === "Paralysis"
+            ? selectedWeapon["Special Attacks"].split(",")[
+                  selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+              ]
+            : 0;
     $: fire_attack =
         selectedWeapon?.hasOwnProperty("Element") &&
         selectedWeapon["Element"] === "Fire"
+            ? selectedWeapon["Special Attacks"].split(",")[
+                  selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+              ]
+            : 0;
+    $: water_attack =
+        selectedWeapon?.hasOwnProperty("Element") &&
+        selectedWeapon["Element"] === "Water"
+            ? selectedWeapon["Special Attacks"].split(",")[
+                  selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+              ]
+            : 0;
+    $: thunder_attack =
+        selectedWeapon?.hasOwnProperty("Element") &&
+        selectedWeapon["Element"] === "Thunder"
+            ? selectedWeapon["Special Attacks"].split(",")[
+                  selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+              ]
+            : 0;
+
+    $: ice_attack =
+        selectedWeapon?.hasOwnProperty("Element") &&
+        selectedWeapon["Element"] === "Ice"
             ? selectedWeapon["Special Attacks"].split(",")[
                   selectedWeaponGrade - selectedWeapon["Minimum Grade"]
               ]
@@ -84,6 +114,12 @@
             tempSkills[name] = level;
         }
         return tempSkills;
+    }
+
+    $: {
+        if (selectedWeapon["Minimum Grade"] > selectedWeaponGrade) {
+            selectedWeaponGrade = selectedWeapon["Minimum Grade"];
+        }
     }
 
     $: {
@@ -152,102 +188,168 @@
     }
 </script>
 
-<div class="flex flex-row h-screen w-screen">
-    <div class="flex flex-col justify-center w-1/2">
-        <div class="bg-green-200">
-            <p>Health: 0</p>
-            <p>Defense: {defense}</p>
-            <p>Attack: {attack}</p>
-            <p>Affinity: 0</p>
-            <p>Poison: 0</p>
-            <p>Paralysis: 0</p>
-            <p>Fire: {fire_attack}</p>
-            <p>Water: 0</p>
-            <p>Thunder: 0</p>
-            <p>Ice: 0</p>
+<div class="flex flex-col items-center min-h-screen w-screen bg-slate-700">
+    <h1 class="text-3xl my-4 font-bold text-slate-300">
+        Monster Hunter Now Set Builder
+    </h1>
+    <div class="flex flex-col gap-3 lg:flex-row w-full max-w-screen-lg">
+        <div class="bg-slate-300 w-full p-3 rounded-lg">
+            <p class="text-center font-bold text-lg">Stats</p>
+            <div class="flex gap-x-2">
+                <div>
+                    <p>Health:</p>
+                    <p>Defense:</p>
+                    <p>Attack:</p>
+                    <p>Affinity:</p>
+                    <p>Poison:</p>
+                    <p>Paralysis:</p>
+                    <p>Fire:</p>
+                    <p>Water:</p>
+                    <p>Thunder:</p>
+                    <p>Ice:</p>
+                </div>
+                <div>
+                    <p>0</p>
+                    <p>{defense}</p>
+                    <p>{attack}</p>
+                    <p>0</p>
+                    <p>{poison_attack}</p>
+                    <p>{paralysis_attack}</p>
+                    <p>{fire_attack}</p>
+                    <p>{water_attack}</p>
+                    <p>{thunder_attack}</p>
+                    <p>{ice_attack}</p>
+                </div>
+            </div>
         </div>
-        <div class="bg-cyan-200">
-            <p>Skills:</p>
-            {#each Object.entries(equippedSkills) as [skill, level]}
-                <p>{skill}: {level}</p>
-            {/each}
+        <div class="bg-slate-300 w-full p-3 rounded-lg">
+            <p class="text-center font-bold text-lg">Skills</p>
+            <div class="flex gap-x-2">
+                <div>
+                    {#each Object.entries(equippedSkills).sort() as [name, level]}
+                        <p>{name}:</p>
+                    {/each}
+                </div>
+                <div>
+                    {#each Object.entries(equippedSkills).sort() as [name, level]}
+                        {@const skill = skills.find((s) => s["Name"] === name)}
+                        <p>{level} / {skill["Maximum Level"]}</p>
+                    {/each}
+                </div>
+            </div>
         </div>
     </div>
-    <div class="flex flex-col justify-center w-1/2 bg-pink-200">
-        <div class="flex">
+    <div
+        class="flex flex-col w-full max-w-screen-lg min-h-[838px] bg-slate-300 rounded-lg mt-3"
+    >
+        <div class="flex px-3 pt-3">
             <input
-                class="grow"
+                class="grow border-2 rounded-md p-2 text-lg"
                 bind:value={searchText}
                 type="text"
                 placeholder="Search name, skills, monster..."
             />
             <button
+                class="p-2 bg-slate-100 rounded-md"
                 on:click={() => {
                     isShowMoreOptions = !isShowMoreOptions;
-                }}>Show More Options</button
+                }}
+            >
+                {isShowMoreOptions ? "Hide" : "Show"} More Options</button
             >
         </div>
         {#if isShowMoreOptions}
-            <div class="flex flex-wrap gap-2 my-2">
-                <div class="flex">
-                    <label class="whitespace-nowrap" for="helm-grade"
-                        >Helm Grade</label
+            <div class="grid grid-cols-6 px-3 gap-x-3">
+                <div
+                    class="col-span-1 flex flex-col rounded-md border-slate-300"
+                >
+                    <label
+                        class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
+                        for="weapon-grade">Weapon Grade</label
+                    >
+                    <input
+                        bind:value={selectedWeaponGrade}
+                        class="w-full ps-2"
+                        id="weapon-grade"
+                        type="number"
+                        min={selectedWeapon["Minimum Grade"]}
+                        max="10"
+                    />
+                </div>
+                <div
+                    class="col-span-1 flex flex-col rounded-md border-slate-300"
+                >
+                    <label
+                        class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
+                        for="helm-grade">Helm Grade</label
                     >
                     <input
                         bind:value={selectedHelmGrade}
-                        class="w-10"
+                        class="w-full ps-2"
                         id="helm-grade"
                         type="number"
                         min="1"
                         max="10"
                     />
                 </div>
-                <div class="flex">
-                    <label class="whitespace-nowrap" for="mail-grade"
-                        >Mail Grade</label
+                <div
+                    class="col-span-1 flex flex-col rounded-md border-slate-300"
+                >
+                    <label
+                        class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
+                        for="mail-grade">Mail Grade</label
                     >
                     <input
                         bind:value={selectedMailGrade}
-                        class="w-10"
+                        class="w-full ps-2"
                         id="mail-grade"
                         type="number"
                         min="1"
                         max="10"
                     />
                 </div>
-                <div class="flex">
-                    <label class="whitespace-nowrap" for="arms-grade"
-                        >Arms Grade</label
+                <div
+                    class="col-span-1 flex flex-col rounded-md border-slate-300"
+                >
+                    <label
+                        class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
+                        for="arms-grade">Arms Grade</label
                     >
                     <input
                         bind:value={selectedArmsGrade}
-                        class="w-10"
+                        class="w-full ps-2"
                         id="arms-grade"
                         type="number"
                         min="1"
                         max="10"
                     />
                 </div>
-                <div class="flex">
-                    <label class="whitespace-nowrap" for="waist-grade"
-                        >Waist Grade</label
+                <div
+                    class="col-span-1 flex flex-col rounded-md border-slate-300"
+                >
+                    <label
+                        class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
+                        for="waist-grade">Waist Grade</label
                     >
                     <input
                         bind:value={selectedWaistGrade}
-                        class="w-10"
+                        class="w-full ps-2"
                         id="waist-grade"
                         type="number"
                         min="1"
                         max="10"
                     />
                 </div>
-                <div class="flex">
-                    <label class="whitespace-nowrap" for="legs-grade"
-                        >Legs Grade</label
+                <div
+                    class="col-span-1 flex flex-col rounded-md border-slate-300"
+                >
+                    <label
+                        class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
+                        for="legs-grade">Legs Grade</label
                     >
                     <input
                         bind:value={selectedLegsGrade}
-                        class="w-10"
+                        class="w-full ps-2"
                         id="legs-grade"
                         type="number"
                         min="1"
@@ -256,7 +358,7 @@
                 </div>
             </div>
         {/if}
-        <div class="flex gap-x-3">
+        <div class="flex gap-x-3 p-3">
             <CheckBox label={"Weapon"} bind:isEnabled={isWeaponEnabled} />
             <CheckBox label={"Helm"} bind:isEnabled={isHelmEnabled} />
             <CheckBox label={"Mail"} bind:isEnabled={isMailEnabled} />
@@ -264,7 +366,7 @@
             <CheckBox label={"Waist"} bind:isEnabled={isWaistEnabled} />
             <CheckBox label={"Legs"} bind:isEnabled={isLegsEnabled} />
         </div>
-        <div class="bg-red-400">
+        <div class="flex flex-col gap-y-2 border-t-2 border-slate-500">
             {#if isWeaponEnabled}
                 <SelectWeapon
                     list={swordandshields}
