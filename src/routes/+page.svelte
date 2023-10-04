@@ -197,16 +197,16 @@
             <p class="text-center font-bold text-lg">Stats</p>
             <div class="flex gap-x-2">
                 <div>
-                    <p>Health:</p>
-                    <p>Defense:</p>
-                    <p>Attack:</p>
-                    <p>Affinity:</p>
-                    <p>Poison:</p>
-                    <p>Paralysis:</p>
-                    <p>Fire:</p>
-                    <p>Water:</p>
-                    <p>Thunder:</p>
-                    <p>Ice:</p>
+                    <p>Health</p>
+                    <p>Defense</p>
+                    <p>Attack</p>
+                    <p>Affinity</p>
+                    <p>Poison</p>
+                    <p>Paralysis</p>
+                    <p>Fire</p>
+                    <p>Water</p>
+                    <p>Thunder</p>
+                    <p>Ice</p>
                 </div>
                 <div>
                     <p>0</p>
@@ -227,7 +227,7 @@
             <div class="flex gap-x-2">
                 <div>
                     {#each Object.entries(equippedSkills).sort() as [name, level]}
-                        <p>{name}:</p>
+                        <p>{name}</p>
                     {/each}
                 </div>
                 <div>
@@ -242,7 +242,7 @@
     <div
         class="flex flex-col w-full max-w-screen-lg min-h-[838px] bg-slate-300 rounded-lg mt-3"
     >
-        <div class="flex px-3 pt-3">
+        <div class="flex px-3 pt-3 gap-x-3">
             <input
                 class="grow border-2 rounded-md p-2 text-lg"
                 bind:value={searchText}
@@ -366,10 +366,11 @@
             <CheckBox label={"Waist"} bind:isEnabled={isWaistEnabled} />
             <CheckBox label={"Legs"} bind:isEnabled={isLegsEnabled} />
         </div>
-        <div class="flex flex-col gap-y-2 border-t-2 border-slate-500">
+        <div class="flex flex-col gap-y-2 pt-2 border-t-2 border-slate-500">
             {#if isWeaponEnabled}
                 <SelectWeapon
                     list={swordandshields}
+                    title="Sword and Shield"
                     nameKey={"Tree"}
                     valueKey={"Equipment Skills"}
                     selectedGrade={selectedWeaponGrade}
@@ -380,6 +381,7 @@
             {#if isHelmEnabled}
                 <SelectWeapon
                     list={armors}
+                    title="Helm"
                     nameKey={"Armor Set"}
                     valueKey={"Helm Skills"}
                     selectedGrade={selectedHelmGrade}
@@ -390,6 +392,7 @@
             {#if isMailEnabled}
                 <SelectWeapon
                     list={armors}
+                    title="Mail"
                     nameKey={"Armor Set"}
                     valueKey={"Mail Skills"}
                     selectedGrade={selectedMailGrade}
@@ -400,6 +403,7 @@
             {#if isArmsEnabled}
                 <SelectWeapon
                     list={armors}
+                    title="Arms"
                     nameKey={"Armor Set"}
                     valueKey={"Arms Skills"}
                     selectedGrade={selectedArmsGrade}
@@ -410,6 +414,7 @@
             {#if isWaistEnabled}
                 <SelectWeapon
                     list={armors}
+                    title="Waist"
                     nameKey={"Armor Set"}
                     valueKey={"Waist Skills"}
                     selectedGrade={selectedWaistGrade}
@@ -420,6 +425,7 @@
             {#if isLegsEnabled}
                 <SelectWeapon
                     list={armors}
+                    title="Legs"
                     nameKey={"Armor Set"}
                     valueKey={"Legs Skills"}
                     selectedGrade={selectedLegsGrade}
