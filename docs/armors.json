@@ -1,0 +1,128 @@
+[
+  {
+    "Armor Set": "Leather Set",
+    "Minimum Grade": 1,
+    "Helm Skills": "Critical Eye Lv.1 (Grade 2)\nIce Resistance Lv.1 (Grade 4)",
+    "Mail Skills": "Attack Boost Lv.1 (Grade 2)\nFire Resistance Lv.1 (Grade 4)",
+    "Arms Skills": "Defense Boost Lv.1 (Grade 2)\nThunder Resistance Lv.1 (Grade 4)",
+    "Waist Skills": "Health Boost Lv.1 (Grade 2)\nWater Resistance Lv.1 (Grade 4)",
+    "Legs Skills": "Poison Resistance Lv.1 (Grade 2)\nParalysis Resistance Lv.1 (Grade 4)"
+  },
+  {
+    "Armor Set": "Jagras Set",
+    "Minimum Grade": 1,
+    "Helm Skills": "Firm Foothold Lv.1 (Grade 2)\nFirm Foothold Lv.2 (Grade 6)",
+    "Mail Skills": "Rising Tide Lv.1 (Grade 2)\nRising Tide Lv.2 (Grade 6)",
+    "Arms Skills": "Firm Foothold Lv.1 (Grade 2)\nWater Attack Lv.1 (Grade 4)",
+    "Waist Skills": "Fortify Lv.1 (Grade 2)\nRising Tide Lv.1 (Grade 4)\nFortify Lv.2 (Grade 6)",
+    "Legs Skills": "Water Attack Lv.1 (Grade 2)\nWater Attack Lv.2 (Grade 6)"
+  },
+  {
+    "Armor Set": "Kulu Set",
+    "Minimum Grade": 1,
+    "Helm Skills": "Lock On Lv.1 (Grade 2)\nCritical Eye Lv.1 (Grade 4)",
+    "Mail Skills": "Guts Lv. 1 (Grade 2)\nGuts Lv. 2 (Grade 6)",
+    "Arms Skills": "Last Stand Lv.1 (Grade 2)\nCritical Eye Lv.1 (Grade 4)",
+    "Waist Skills": "Last Stand Lv.1 (Grade 2)\nEvade Extender Lv.1 (Grade 4)",
+    "Legs Skills": "Critical Eye Lv.1 (Grade 2)\nCritical Eye Lv.2 (Grade 6)"
+  },
+  {
+    "Armor Set": "Pukei Set",
+    "Minimum Grade": 1,
+    "Helm Skills": "Focus Lv.1 (Grade 2)\nHealth Boost Lv.1 (Grade 4)\nHealth Boost Lv.2 (Grade 6)",
+    "Mail Skills": "Poison Resist Lv.1 (Grade 2)\nFocus Lv.1 (Grade 4)",
+    "Arms Skills": "Poison Attack Lv.1 (Grade 2)\nPoison Resistance Lv.1 (Grade 4)",
+    "Waist Skills": "Poison Attack Lv.1 (Grade 2)\nPoison Attack Lv.2 (Grade 6)",
+    "Legs Skills": "Health Resistance Lv.1 (Grade 2)\nPoison Resistance Lv.1 (Grade 4)"
+  },
+  {
+    "Armor Set": "Barroth Set",
+    "Minimum Grade": 1,
+    "Helm Skills": "Defense Boost Lv.1 (Grade 2)\nOffensive Guard Lv.1 (Grade 4)",
+    "Mail Skills": "Offensive Guard Lv.1 (Grade 2)\nOffensive Guard Lv.2 (Grade 6)",
+    "Arms Skills": "Guard Lv. 1 (Grade 2)\nGuard Lv.2 (Grade 6)",
+    "Waist Skills": "Defense Boost Lv.1 (Grade 2)\nGuard Lv. 1 (Grade 4)",
+    "Legs Skills": "Recoil Down Lv. 1 (Grade 2)\nDefense Boost Lv.1 (Grade 4)\nDefense Boost Lv.2 (Grade 6)"
+  },
+  {
+    "Armor Set": "Girros Set",
+    "Minimum Grade": 2,
+    "Helm Skills": "Paralysis Resistance Lv.1\nParalysis Resistance Lv.2 (Grade 4)",
+    "Mail Skills": "Paralysis Resistance Lv.1\nSneak Attack Lv.1 (Grade 6)",
+    "Arms Skills": "Sneak Attack Lv.1\nEarplugs Lv.1 (Grade 6)",
+    "Waist Skills": "Paralysis Attack Lv.1\nEarplugs Lv.1 (Grade 4)",
+    "Legs Skills": "Paralysis Attack Lv.1\nParalysis Attack Lv. 2 (Grade 6)"
+  },
+  {
+    "Armor Set": "Kadachi Set",
+    "Minimum Grade": 2,
+    "Helm Skills": "Reload Speed Lv.1\nArtful Dodger Lv.1 (Grade 6)",
+    "Mail Skills": "Evade Extender Lv.1\nThunder Attack Lv.1 (Grade 4)",
+    "Arms Skills": "Evade Extender Lv.1\nArtful Dodger Lv.1 (Grade 4)\nEvade Extender Lv.2 (Grade 6)",
+    "Waist Skills": "Thunder Attack Lv.1\nThunder Attack Lv.2 (Grade 6)",
+    "Legs Skills": "Artful Dodger Lv.1\nThunder Resistance Lv.1 (Grade 4)"
+  },
+  {
+    "Armor Set": "Paolumu Set",
+    "Minimum Grade": 3,
+    "Helm Skills": "Concentration Lv.1\nWindproof Lv.1 (Grade 4)",
+    "Mail Skills": "Recoil Down Lv.1\nRecoil Down Lv.2 (Grade 6)",
+    "Arms Skills": "Concentration Lv.1\nDivine Blessing Lv.1 (Grade 4)\nConcentration Lv.2 (Grade 6)",
+    "Waist Skills": "Divine Blessing Lv.1\nDivine Blessing Lv.2 (Grade 6)",
+    "Legs Skills": "Windproof Lv.1\nWindproof Lv.1 (Grade 6)"
+  },
+  {
+    "Armor Set": "Jyuratodus Set",
+    "Minimum Grade": 3,
+    "Helm Skills": "Water Resistance Lv.1\nLast Stand Lv.1 (Grade 4)",
+    "Mail Skills": "Water Attack Lv.1\nLast Stand Lv.1 (Grade 4)",
+    "Arms Skills": "Water Attack Lv.1\nWater Attack Lv.2 (Grade 6)",
+    "Waist Skills": "Water Resistance Lv.1\nWater Resistance Lv.2 (Grade 4)",
+    "Legs Skills": "Focus Lv.1\nLast Stand Lv.1 (Grade 4)\nFocus Lv.2 (Grade 6)"
+  },
+  {
+    "Armor Set": "Anjanath Set",
+    "Minimum Grade": 4,
+    "Helm Skills": "Fire Attack Lv.2\nFire Resistance Lv.1 (Grade 6)",
+    "Mail Skills": "Special Boost Lv.1\nSpecial Boost Lv.2 (Grade 6)",
+    "Arms Skills": "Fire Attack Lv.1\nFire Attack Lv.2 (Grade 6)",
+    "Waist Skills": "Fire Resistance Lv.1\nSpecial Boost Lv.1 (Grade 6)",
+    "Legs Skills": "Peak Performance Lv.1\nPeak Performance Lv.2 (Grade 6)"
+  },
+  {
+    "Armor Set": "Rathian Set",
+    "Minimum Grade": 4,
+    "Helm Skills": "Health Boost Lv.2\nPoison Attack Lv.1 (Grade 6)",
+    "Mail Skills": "Poison Attack Lv.1\nPoison Attack Lv.2 (Grade 6)",
+    "Arms Skills": "Lock On Lv.1\nBurst Lv.1\nBurst Lv.2 (Grade 6)",
+    "Waist Skills": "Poison Resistance Lv.1\nBurst Lv.1 (Grade 6)",
+    "Legs Skills": "Health Boost Lv.1\nHealth Boost Lv.2 (Grade 6)"
+  },
+  {
+    "Armor Set": "Legiana Set",
+    "Minimum Grade": 5,
+    "Helm Skills": "Divine Blessing Lv.1\nIce Attack Lv.1 (Grade 6)",
+    "Mail Skills": "Divine Blessing Lv.2\nWindproof Lv.1 (Grade 6)",
+    "Arms Skills": "Reload Speed Lv.1\nReload Speed Lv.2 (Grade 6)",
+    "Waist Skills": "Ice Attack Lv.2\nWindproof Lv.1 (Grade 6)",
+    "Legs Skills": "Reload Speed Lv.1\nIce Resistance Lv.2 (Grade 6)"
+  },
+  {
+    "Armor Set": "Diablos Set",
+    "Minimum Grade": 5,
+    "Helm Skills": "Heroics Lv.1\nHeroics Lv.2 (Grade 6)",
+    "Mail Skills": "Slugger Lv.1\nHeroics Lv.1 (Grade 6)",
+    "Arms Skills": "Heroics Lv.2\nPartbreaker Lv.1 (Grade 6)",
+    "Waist Skills": "Partbreaker Lv.1\nOffensive Guard Lv.1 (Grade 6)",
+    "Legs Skills": "Slugger Lv.2\nPartbreaker Lv.1 (Grade 6)"
+  },
+  {
+    "Armor Set": "Rathalos Set",
+    "Minimum Grade": 5,
+    "Helm Skills": "Attack Boost Lv.2\nFire Attack Lv.1 (Grade 6)",
+    "Mail Skills": "Weakness Exploit Lv.1\nWeakness Exploit Lv.2 (Grade 6)",
+    "Arms Skills": "Fire Resistance Lv.1\nAttack Boost Lv.1 (Grade 6)",
+    "Waist Skills": "Focus Lv.1\nFire Attack Lv.1 (Grade 6)",
+    "Legs Skills": "Fire Resistance Lv.1\nWeakness Exploit Lv.1 (Grade 6)"
+  }
+]
