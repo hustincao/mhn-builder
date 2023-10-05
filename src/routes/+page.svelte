@@ -224,7 +224,9 @@
                     <p class="bg-slate-100 rounded-lg px-2">{attack}</p>
                     <p class="bg-slate-100 rounded-lg px-2">{affinity}</p>
                     <p class="bg-slate-100 rounded-lg px-2">{poison_attack}</p>
-                    <p class="bg-slate-100 rounded-lg px-2">{paralysis_attack}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">
+                        {paralysis_attack}
+                    </p>
                     <p class="bg-slate-100 rounded-lg px-2">{fire_attack}</p>
                     <p class="bg-slate-100 rounded-lg px-2">{water_attack}</p>
                     <p class="bg-slate-100 rounded-lg px-2">{thunder_attack}</p>
@@ -232,21 +234,37 @@
                 </div>
             </div>
         </div>
-        <div class="bg-slate-300  p-3 rounded-lg">
+        <div class="bg-slate-300 p-3 rounded-lg">
             <p class="text-center font-bold text-lg mb-4">Skills</p>
             <div class="flex gap-x-2 gap-y-2 relative">
                 <div class="flex flex-col gap-y-2">
                     {#each Object.entries(equippedSkills).sort() as [name, level]}
                         <!-- <p>{name}</p> -->
                         {@const skill = skills.find((s) => s["Name"] === name)}
-                        <Tooltip label={name} description={skill["Description"]} />
+                        <Tooltip
+                            label={name}
+                            description={skill["Description"]}
+                        />
                     {/each}
                 </div>
                 <div class="flex flex-col gap-y-2">
                     {#each Object.entries(equippedSkills).sort() as [name, level]}
                         {@const skill = skills.find((s) => s["Name"] === name)}
                         <!-- <p>{level} / {skill["Maximum Level"]}</p> -->
-                        <Tooltip label={`<p class="whitespace-nowrap">${level} / ${skill["Maximum Level"]}</p>`} description={'<ul class="list-decimal list-inside">' + skill["Level Descriptions"].split(";").map((d,i) => `<li class="${i !== level - 1 && 'text-slate-400'}">${d}</li>`).join("") + '</ul>'} />
+                        <Tooltip
+                            label={`<p class="whitespace-nowrap">${level} / ${skill["Maximum Level"]}</p>`}
+                            description={(()=>{
+                                const descriptions = skill["Level Descriptions"].split(";");
+                                const l = Math.min(level, descriptions.length-1);
+                                return '<ul class="list-decimal list-inside">' +
+                                    
+                                    descriptions.map(
+                                        (d, i, r) =>
+                                            `<li class="${ i !== l && "text-slate-400"}">${d}</li>`
+                                    )
+                                    .join("") +
+                                "</ul>"})()}
+                        />
                     {/each}
                 </div>
             </div>
