@@ -3,7 +3,7 @@
     import Tooltip from "$lib/components/tooltip.svelte";
     import { getSkillLevelGrade } from "$lib/utils";
     import { onMount } from "svelte";
-    let armors, swordandshields, skills;
+    let armors, swordandshields, hammers, greatswords, longswords, skills;
     const armorGrades = [20, 34, 49, 65, 82, 100, 119, 139, 160, 182];
 
     let selectedWeapon = {};
@@ -18,6 +18,9 @@
         swordandshields = await fetch("/sword-and-shields.json").then((r) =>
             r.json()
         );
+        hammers = await fetch("/hammers.json").then((r) => r.json());
+        greatswords = await fetch("/great-swords.json").then((r) => r.json());
+        longswords = await fetch("/long-swords.json").then((r) => r.json());
         skills = await fetch("/skills.json").then((r) => r.json());
         selectedWeapon = swordandshields[0];
         selectedHelm = armors[0];
@@ -109,17 +112,32 @@
     let selectedLegsGrade = 10;
 
     let searchText = "";
+    let selectedWeaponCategory = "Sword and Shield";
+    $: displayedWeaponCategory = (() => {
+        switch (selectedWeaponCategory) {
+            case "Sword and Shield":
+                return swordandshields;
+            case "Hammer":
+                return hammers;
+            case "Great Sword":
+                return greatswords;
+            case "Long Sword":
+                return longswords;
+            default:
+                return [];
+        }
+    })();
 
     let equippedSkills = {};
 
-    function getSkills(inputSkills, grade) {
+    function getSkills(inputSkills, inputGrade) {
         if (!inputSkills) return {};
         let skills = inputSkills.split("\n");
         let tempSkills = {};
         for (let i = 0; i < skills.length; i++) {
             let skill = skills[i];
             let { name, level, grade } = getSkillLevelGrade(skill);
-            // console.log(name, level, grade);
+            if (grade > inputGrade) break;
             tempSkills[name] = level;
         }
         return tempSkills;
@@ -253,17 +271,27 @@
                         <!-- <p>{level} / {skill["Maximum Level"]}</p> -->
                         <Tooltip
                             label={`<p class="whitespace-nowrap">${level} / ${skill["Maximum Level"]}</p>`}
-                            description={(()=>{
-                                const descriptions = skill["Level Descriptions"].split(";");
-                                const l = Math.min(level, descriptions.length-1);
-                                return '<ul class="list-decimal list-inside">' +
-                                    
-                                    descriptions.map(
-                                        (d, i, r) =>
-                                            `<li class="${ i !== l && "text-slate-400"}">${d}</li>`
-                                    )
-                                    .join("") +
-                                "</ul>"})()}
+                            description={(() => {
+                                const descriptions =
+                                    skill["Level Descriptions"].split(";");
+                                const l = Math.min(
+                                    level,
+                                    descriptions.length - 1
+                                );
+                                return (
+                                    '<ul class="list-decimal list-inside">' +
+                                    descriptions
+                                        .map(
+                                            (d, i, r) =>
+                                                `<li class="${
+                                                    i !== l - 1 &&
+                                                    "text-slate-400"
+                                                }">${d}</li>`
+                                        )
+                                        .join("") +
+                                    "</ul>"
+                                );
+                            })()}
                         />
                     {/each}
                 </div>
@@ -390,6 +418,14 @@
             </div>
         {/if}
         <div class="flex gap-x-3 p-3">
+            <select class="rounded-md" bind:value={selectedWeaponCategory}>
+                <option class="hover:bg-slate-500" value="Sword and Shield"
+                    >Sword and Shield</option
+                >
+                <option value="Hammer">Hammer</option>
+                <option value="Great Sword">Great Swords</option>
+                <option value="Long Sword">Long Sword</option>
+            </select>
             <CheckBox label={"Weapon"} bind:isEnabled={isWeaponEnabled} />
             <CheckBox label={"Helm"} bind:isEnabled={isHelmEnabled} />
             <CheckBox label={"Mail"} bind:isEnabled={isMailEnabled} />
@@ -400,8 +436,8 @@
         <div class="flex flex-col gap-y-2 pt-2 border-t-2 border-slate-500">
             {#if isWeaponEnabled}
                 <SelectWeapon
-                    list={swordandshields}
-                    title="Sword and Shield"
+                    list={displayedWeaponCategory}
+                    title={selectedWeaponCategory}
                     nameKey={"Tree"}
                     valueKey={"Equipment Skills"}
                     selectedGrade={selectedWeaponGrade}
