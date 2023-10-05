@@ -246,7 +246,7 @@
                     {#each Object.entries(equippedSkills).sort() as [name, level]}
                         {@const skill = skills.find((s) => s["Name"] === name)}
                         <!-- <p>{level} / {skill["Maximum Level"]}</p> -->
-                        <Tooltip label={`<p class="whitespace-nowrap">${level} / ${skill["Maximum Level"]}</p>`} description={skill["Level Descriptions"].split(";").map(d => `<p>${d}</p>`).join("")} />
+                        <Tooltip label={`<p class="whitespace-nowrap">${level} / ${skill["Maximum Level"]}</p>`} description={'<ul class="list-decimal list-inside">' + skill["Level Descriptions"].split(";").map((d,i) => `<li class="${i !== level - 1 && 'text-slate-400'}">${d}</li>`).join("") + '</ul>'} />
                     {/each}
                 </div>
             </div>
