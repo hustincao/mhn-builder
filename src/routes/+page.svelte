@@ -1,5 +1,6 @@
 <script>
-    import { CheckBox, SelectArmor, SelectWeapon } from "$lib";
+    import { CheckBox, SelectWeapon } from "$lib";
+    import Tooltip from "$lib/components/tooltip.svelte";
     import { getSkillLevelGrade } from "$lib/utils";
     import { onMount } from "svelte";
     let armors, swordandshields, skills;
@@ -25,6 +26,21 @@
         selectedWaist = armors[0];
         selectedLegs = armors[0];
     });
+
+    $: health = 100;
+
+    $: defense =
+        armorGrades[selectedHelmGrade - 1] +
+        armorGrades[selectedMailGrade - 1] +
+        armorGrades[selectedArmsGrade - 1] +
+        armorGrades[selectedWaistGrade - 1] +
+        armorGrades[selectedLegsGrade - 1];
+
+    $: affinity = selectedWeapon?.hasOwnProperty("Affinities")
+        ? selectedWeapon["Affinities"].split(",")[
+              selectedWeaponGrade - selectedWeapon["Minimum Grade"]
+          ]
+        : 0;
 
     $: attack = selectedWeapon?.hasOwnProperty("Attacks")
         ? selectedWeapon["Attacks"].split(",")[
@@ -75,13 +91,6 @@
                   selectedWeaponGrade - selectedWeapon["Minimum Grade"]
               ]
             : 0;
-
-    $: defense =
-        armorGrades[selectedHelmGrade - 1] +
-        armorGrades[selectedMailGrade - 1] +
-        armorGrades[selectedArmsGrade - 1] +
-        armorGrades[selectedWaistGrade - 1] +
-        armorGrades[selectedLegsGrade - 1];
 
     let isShowMoreOptions = false;
 
@@ -192,48 +201,52 @@
     <h1 class="text-3xl my-4 font-bold text-slate-300">
         Monster Hunter Now Set Builder
     </h1>
+    <!-- <Tooltip label="label" description="Description"/> -->
     <div class="flex flex-col gap-3 lg:flex-row w-full max-w-screen-lg">
-        <div class="bg-slate-300 w-full p-3 rounded-lg">
-            <p class="text-center font-bold text-lg">Stats</p>
+        <div class="bg-slate-300 p-3 rounded-lg">
+            <p class="text-center font-bold text-lg mb-4">Stats</p>
             <div class="flex gap-x-2">
-                <div>
-                    <p>Health</p>
-                    <p>Defense</p>
-                    <p>Attack</p>
-                    <p>Affinity</p>
-                    <p>Poison</p>
-                    <p>Paralysis</p>
-                    <p>Fire</p>
-                    <p>Water</p>
-                    <p>Thunder</p>
-                    <p>Ice</p>
+                <div class="flex flex-col gap-y-2">
+                    <p class="bg-slate-100 rounded-lg px-2">Health</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Defense</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Attack</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Affinity</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Poison</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Paralysis</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Fire</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Water</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Thunder</p>
+                    <p class="bg-slate-100 rounded-lg px-2">Ice</p>
                 </div>
-                <div>
-                    <p>0</p>
-                    <p>{defense}</p>
-                    <p>{attack}</p>
-                    <p>0</p>
-                    <p>{poison_attack}</p>
-                    <p>{paralysis_attack}</p>
-                    <p>{fire_attack}</p>
-                    <p>{water_attack}</p>
-                    <p>{thunder_attack}</p>
-                    <p>{ice_attack}</p>
+                <div class="flex flex-col gap-y-2">
+                    <p class="bg-slate-100 rounded-lg px-2">{health}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{defense}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{attack}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{affinity}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{poison_attack}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{paralysis_attack}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{fire_attack}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{water_attack}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{thunder_attack}</p>
+                    <p class="bg-slate-100 rounded-lg px-2">{ice_attack}</p>
                 </div>
             </div>
         </div>
-        <div class="bg-slate-300 w-full p-3 rounded-lg">
-            <p class="text-center font-bold text-lg">Skills</p>
-            <div class="flex gap-x-2">
-                <div>
+        <div class="bg-slate-300  p-3 rounded-lg">
+            <p class="text-center font-bold text-lg mb-4">Skills</p>
+            <div class="flex gap-x-2 gap-y-2 relative">
+                <div class="flex flex-col gap-y-2">
                     {#each Object.entries(equippedSkills).sort() as [name, level]}
-                        <p>{name}</p>
+                        <!-- <p>{name}</p> -->
+                        {@const skill = skills.find((s) => s["Name"] === name)}
+                        <Tooltip label={name} description={skill["Description"]} />
                     {/each}
                 </div>
-                <div>
+                <div class="flex flex-col gap-y-2">
                     {#each Object.entries(equippedSkills).sort() as [name, level]}
                         {@const skill = skills.find((s) => s["Name"] === name)}
-                        <p>{level} / {skill["Maximum Level"]}</p>
+                        <!-- <p>{level} / {skill["Maximum Level"]}</p> -->
+                        <Tooltip label={`<p class="whitespace-nowrap">${level} / ${skill["Maximum Level"]}</p>`} description={skill["Level Descriptions"].split(";").map(d => `<p>${d}</p>`).join("")} />
                     {/each}
                 </div>
             </div>
@@ -244,7 +257,7 @@
     >
         <div class="flex px-3 pt-3 gap-x-3">
             <input
-                class="grow border-2 rounded-md p-2 text-lg"
+                class="grow rounded-md p-2 text-lg"
                 bind:value={searchText}
                 type="text"
                 placeholder="Search name, skills, monster..."
