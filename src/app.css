@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @font-face {
     font-family: 'Gabarito';
     src: url("/fonts/Gabarito-Regular.ttf");
@@ -42,3 +44,4 @@
 ::-webkit-scrollbar-thumb:hover {
     background: #334155;
 }
+
