@@ -207,6 +207,7 @@
       }
     }
   }
+
 </script>
 
 <div class="flex flex-col items-center min-h-screen bg-slate-700">
@@ -498,7 +499,7 @@
     {/if}
     <div class="flex gap-x-3 gap-y-2 p-3 flex-wrap">
       <select
-        class="rounded-md hover:ring-slate-400 hover:ring-2"
+        class="rounded-md px-2 hover:ring-slate-400 hover:ring-2"
         bind:value={selectedWeaponCategory}
       >
         <option class="hover:bg-slate-400" value="Sword and Shield"
@@ -587,10 +588,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  input[type="number"]::-webkit-inner-spin-button,
-  input[type="number"]::-webkit-outer-spin-button {
-    opacity: 1;
-  }
-</style>
