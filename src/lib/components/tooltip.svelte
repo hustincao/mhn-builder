@@ -1,21 +1,25 @@
 <script>
 
-  let outerWidth, tooltipElement, contentRect;
-
-  $: tooltipRect = tooltipElement && tooltipElement.getBoundingClientRect();
-  $: overflow = Math.max(0, tooltipRect?.right - outerWidth);
+  let screenWidth=0, overflow = 0;
+  let wrapperElement, tooltipWidth;
+  $: {
+    
+    if(screenWidth){
+      const left = wrapperElement?.getBoundingClientRect().left || 0;
+      overflow = Math.min(0, screenWidth - (left + tooltipWidth));
+    }
+  }
 
 </script>
 
-<svelte:window bind:outerWidth />
-<div class="relative">
+<svelte:window bind:outerWidth={screenWidth} />
+<div class="relative" bind:this={wrapperElement} >
   <div class="peer flex items-center gap-x-2 bg-slate-100 rounded-lg px-2">
     <slot name="label" />
   </div>
-  <div
-    bind:this={tooltipElement}
-    bind:contentRect
-    style={`left: -${overflow}px`}
+  <div    
+    bind:offsetWidth={tooltipWidth}
+    style={`left:${overflow}px`}
     role="tooltip"
     class="invisible w-max max-w-xs top-5 absolute z-50 p-2 peer-hover:visible peer-hover:opacity-100 opacity-0 transition-opacity bg-slate-900 rounded-lg font-semibold text-slate-50"
   >
