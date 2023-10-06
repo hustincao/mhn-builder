@@ -22,7 +22,7 @@
 <div>
     <p class="font-bold text-center text-lg">{title}</p>
     <div
-        class="scrollbar flex overflow-x-scroll whitespace-nowrap gap-x-4 bg-slate-300 p-2 border-b-2 border-slate-500"
+        class="flex overflow-x-scroll whitespace-nowrap gap-x-4 bg-slate-300 p-2 border-b-2 border-slate-500"
     >
         {#if filteredList.length === 0}
             <p class="italic text-center">No {title} found</p>
@@ -31,6 +31,7 @@
             <ArmorButton
                 armorName={armor[nameKey]}
                 armorSkills={armor[valueKey]}
+                element={"Element" in armor && armor["Element"] !== "None" ? armor["Element"] : ""}
                 isSelected={selectedValue === armor}
                 {selectedGrade}
                 onClick={() => {
@@ -40,24 +41,3 @@
         {/each}
     </div>
 </div>
-
-<style>
-    .scrollbar::-webkit-scrollbar {
-        width: 15px;
-        height: 15px;
-    }
-
-    .scrollbar::-webkit-scrollbar-track {
-        background: #f8fafc;
-    }
-
-    .scrollbar::-webkit-scrollbar-thumb {
-        background: #64748b;
-        border-radius: 100vh;
-        border: 3px solid #f8fafc;
-    }
-
-    .scrollbar::-webkit-scrollbar-thumb:hover {
-        background: #334155;
-    }
-</style>
