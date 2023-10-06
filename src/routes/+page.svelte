@@ -273,35 +273,35 @@
       <p class="text-center font-bold text-lg mb-4">Active Skills</p>
       <div class="flex gap-x-2 gap-y-2 relative">
         <div class="flex flex-col gap-y-2">
-          {#each Object.entries(equippedSkills).sort() as [name, level]}
+          {#each Object.entries(equippedSkills).sort() as [name, level], i}
             <!-- <p>{name}</p> -->
+            {#if i < 0}
             {@const skill = skills.find((s) => s["Name"] === name)}
-            <Tooltip label={name} description={skill["Description"]} />
+            <Tooltip>
+              <p slot="label">{name}</p>
+              <p slot="description">{skill["Description"]}</p>
+            </Tooltip>  
+            {/if}
           {/each}
         </div>
         <div class="flex flex-col gap-y-2">
-          {#each Object.entries(equippedSkills).sort() as [name, level]}
+          {#each Object.entries(equippedSkills).sort() as [name, level], i}
             {@const skill = skills.find((s) => s["Name"] === name)}
             <!-- <p>{level} / {skill["Maximum Level"]}</p> -->
-            <Tooltip
-              label={`<p class="whitespace-nowrap">${level} / ${skill["Maximum Level"]}</p>`}
-              description={(() => {
-                const descriptions = skill["Level Descriptions"].split(";");
-                const l = Math.min(level, descriptions.length - 1);
-                return (
-                  '<ul class="list-decimal list-inside">' +
-                  descriptions
-                    .map(
-                      (d, i, r) =>
-                        `<li class="${
-                          i !== l - 1 && "text-slate-400"
-                        }">${d}</li>`
-                    )
-                    .join("") +
-                  "</ul>"
-                );
-              })()}
-            />
+            {#if i < 1}
+            <Tooltip>
+              <p slot="label" class="whitespace-nowrap">{level} / {skill["Maximum Level"]}</p>
+              <ul slot="description">
+                {@const descriptions = skill["Level Descriptions"].split(";")}
+                {@const l = Math.min(level, descriptions.length - 1)}
+                {#each descriptions as d, i}
+                  <li class={i !== l - 1 && "text-slate-400"}>
+                    {d}
+                  </li>
+                {/each}
+              </ul>
+            </Tooltip>
+            {/if}
           {/each}
         </div>
       </div>
@@ -423,8 +423,8 @@
       </div>
     {/if}
     <div class="flex gap-x-3 gap-y-2 p-3 flex-wrap">
-      <select class="rounded-md" bind:value={selectedWeaponCategory}>
-        <option class="hover:bg-slate-500" value="Sword and Shield"
+      <select class="rounded-md hover:ring-slate-400 hover:ring-2" bind:value={selectedWeaponCategory}>
+        <option class="hover:bg-slate-400" value="Sword and Shield"
           >Sword and Shield</option
         >
         <option value="Hammer">Hammer</option>
