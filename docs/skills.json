@@ -171,7 +171,7 @@
     "Name": "Poison Resistance",
     "Description": "Grants a chance to prevent poison status when damaged by a poison-inducing attack.",
     "Maximum Level": 5,
-    "Level Descriptions": "Grants a 20% chance of preventing poison status when damage by a poison-element attack.;Grants a 40% chance of preventing poison status when damage by a poison-element attack.;Grants a 60% chance of preventing poison status when damage by a poison-element attack.;Grants a 80% chance of preventing poison status when damage by a poison-element attack."
+    "Level Descriptions": "Grants a 20% chance of preventing poison status when damage by a poison-element attack.;Grants a 40% chance of preventing poison status when damage by a poison-element attack.;Grants a 60% chance of preventing poison status when damage by a poison-element attack.;Grants a 80% chance of preventing poison status when damage by a poison-element attack.;Prevents poisoning."
   },
   {
     "Name": "Recoil Down",

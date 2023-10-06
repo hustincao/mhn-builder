@@ -2,6 +2,7 @@
     import { getSkillLevelGrade } from "$lib/utils";
     export let armorName;
     export let armorSkills; // Comes in as a single string
+    export let element;
     export let isSelected = false;
     export let onClick;
     export let selectedGrade;
@@ -15,7 +16,11 @@
     on:click={onClick}
 >
     <div class="flex flex-col justify-start h-full">
-        <p class="font-bold">{armorName}</p>
+        <div class="font-bold flex w-full justify-center gap-x-2">{armorName} 
+            {#if element} 
+            <img class="h-5 w-5" src={`/element-icons/element-${element.toLowerCase()}.webp`} alt={`Element ${element} Icon`}  />
+            {/if}
+        </div>
         {#each armorSkills.split("\n") as skill}
             {@const { name, level, grade } = getSkillLevelGrade(skill)}
             <p

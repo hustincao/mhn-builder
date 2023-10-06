@@ -1,0 +1,112 @@
+[
+    {
+        "Monster": "None",
+        "Tree": "Iron Bow Tree",
+        "Minimum Grade": 1,
+        "Attacks": "100,144,207,299,430,559,727,945,1228,1596",
+        "Special Attacks": "0,0,0,0,0,0,0,0,0,0",
+        "Affinities": "0,0,0,0,0,0,0,0,0,0",
+        "Element": "None",
+        "Equipment Skills": "Poison Resistance Lv.1 (Grade 4)\nPoison Resistance Lv.2 (Grade 8)"
+    },
+    {
+        "Monster": "Kulu-Ya-Ku",
+        "Tree": "Kulu Arrow Tree",
+        "Minimum Grade": 1,
+        "Attacks": "100,144,207,299,430,559,727,945,1228,1596",
+        "Special Attacks": "0,0,0,0,0,0,0,0,0,0",
+        "Affinities": "0,0,0,0,0,0,0,0,0,0",
+        "Element": "Water",
+        "Equipment Skills": "Health Boost Lv.1 (Grade 4)\nHealth Boost Lv.2 (Grade 8)"
+    },
+    {
+        "Monster": "Pukei-Pukei",
+        "Tree": "Blooming Arch Tree",
+        "Minimum Grade": 1,
+        "Attacks": "100,144,207,299,430,559,727,945,1228,1596",
+        "Special Attacks": "50,100,150,200,250,300,325,350,375,400",
+        "Affinities": "0,0,0,0,0,0,0,0,0,0",
+        "Element": "Poison",
+        "Equipment Skills": "Sneak Attack Lv.1 (Grade 8)"
+    },
+    {
+        "Monster": "Tobi-Kadachi",
+        "Tree": "Pulsar Bow Tree",
+        "Minimum Grade": 2,
+        "Attacks": "128,182,260,370,475,611,784,1007,1293",
+        "Special Attacks": "47,75,117,181,251,349,481,663,910",
+        "Affinities": "0,0,0,0,0,0,0,0,0",
+        "Element": "Thunder",
+        "Equipment Skills": "Evade Extender Lv.1 (Grade 8)"
+    },
+    {
+        "Monster": "Jyuratodus",
+        "Tree": "Aqua Arrow Tree",
+        "Minimum Grade": 3,
+        "Attacks": "182,260,370,475,611,784,1007,1293",
+        "Special Attacks": "75,117,181,251,349,481,663,910",
+        "Affinities": "0,0,0,0,0,0,0,0",
+        "Element": "Water",
+        "Equipment Skills": "Last Stand Lv.1 (Grade 8)"
+    },
+    {
+        "Monster": "Anjanath",
+        "Tree": "Blazing Bow Tree",
+        "Minimum Grade": 4,
+        "Attacks": "260,370,475,611,784,1007,1293",
+        "Special Attacks": "117,181,251,349,481,663,910",
+        "Affinities": "0,0,0,0,0,0,0",
+        "Element": "Fire",
+        "Equipment Skills": "Rising Tide Lv.1 (Grade 8)"
+    },
+    {
+        "Monster": "Rathian",
+        "Tree": "Princess Arrow Tree",
+        "Minimum Grade": 4,
+        "Attacks": "284,409,531,691,898,1167,1516",
+        "Special Attacks": "236,298,360,393,427,461,496",
+        "Affinities": "0,0,0,0,0,0,0",
+        "Element": "Poison",
+        "Equipment Skills": "Health Boost Lv.1 (Grade 4)\nHealth Boost Lv.2 (Grade 8)"
+    },
+    {
+        "Monster": "Legiana",
+        "Tree": "Glacial Arrow Tree",
+        "Minimum Grade": 5,
+        "Attacks": "361,461,589,751,958,1221",
+        "Special Attacks": "232,320,443,608,835,1142",
+        "Affinities": "0,0,0,0,0,0",
+        "Element": "Ice",
+        "Equipment Skills": "Divine Blessing Lv.1 (Grade 4)\nDivine Blessing Lv.2 (Grade 8)"
+    },
+    {
+        "Monster": "Diablos",
+        "Tree": "Diablos Bow Tree",
+        "Minimum Grade": 5,
+        "Attacks": "512,671,880,1153,1510,1979",
+        "Special Attacks": "0,0,0,0,0,0",
+        "Affinities": "0,0,0,0,0,0",
+        "Element": "None",
+        "Equipment Skills": "Heroics Lv.1 (Grade 8)"
+    },
+    {
+        "Monster": "Rathalos",
+        "Tree": "Rathslinger Tree",
+        "Minimum Grade": 5,
+        "Attacks": "361,461,589,751,958,1221",
+        "Special Attacks": "232,320,443,608,835,1142",
+        "Affinities": "0,0,0,0,0,0",
+        "Element": "Fire",
+        "Equipment Skills": "Earplugs Lv.1 (Grade 8)"
+    },
+    {
+        "Monster": "Black Diablos",
+        "Tree": "Galebender Tree",
+        "Minimum Grade": 5,
+        "Attacks": "576,755,989,1295,1695,2218",
+        "Special Attacks": "0,0,0,0,0,0",
+        "Affinities": "0,0,0,0,0,0",
+        "Element": "None",
+        "Equipment Skills": "Partbreaker Lv.1 (Grade 8)"
+    }
+]
