@@ -1,9 +1,12 @@
 <script>
+    import { onMount } from "svelte";
+    import { slide } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
   import { ArmorButton, CheckBox, SelectWeapon } from "$lib";
   import GradeButton from "$lib/components/grade-button.svelte";
   import Tooltip from "$lib/components/tooltip.svelte";
   import { getSkillLevelGrade, getSkills } from "$lib/utils";
-  import { onMount } from "svelte";
+
   let armors = [],
     swordandshields = [],
     hammers = [],
@@ -398,7 +401,7 @@
       />
     </div>
     {#if isShowMoreOptions}
-      <div class="grid grid-cols-3 md:grid-cols-6 px-3 gap-x-3">
+      <div transition:slide={{ delay: 10, duration: 300, easing: quintOut, axis: 'y' }} class="grid grid-cols-3 md:grid-cols-6 py-2 px-3 gap-x-3">
         <div class="col-span-1 flex flex-col rounded-md border-slate-300">
           <label
             class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
