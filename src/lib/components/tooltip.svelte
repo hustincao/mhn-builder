@@ -14,7 +14,7 @@
 
 <svelte:window bind:outerWidth={screenWidth} />
 <div class="relative" bind:this={wrapperElement} >
-  <div class="peer flex items-center gap-x-2 bg-slate-100 rounded-lg px-2">
+  <div class="peer">
     <slot name="label" />
   </div>
   <div    
