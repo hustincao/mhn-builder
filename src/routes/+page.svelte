@@ -1,7 +1,8 @@
 <script>
-  import { CheckBox, SelectWeapon } from "$lib";
+  import { ArmorButton, CheckBox, SelectWeapon } from "$lib";
+  import GradeButton from "$lib/components/grade-button.svelte";
   import Tooltip from "$lib/components/tooltip.svelte";
-  import { getSkillLevelGrade } from "$lib/utils";
+  import { getSkillLevelGrade, getSkills } from "$lib/utils";
   import { onMount } from "svelte";
   let armors = [],
     swordandshields = [],
@@ -143,18 +144,6 @@
 
   let equippedSkills = {};
 
-  function getSkills(inputSkills, inputGrade) {
-    if (!inputSkills) return {};
-    let skills = inputSkills.split("\n");
-    let tempSkills = {};
-    for (let i = 0; i < skills.length; i++) {
-      let skill = skills[i];
-      let { name, level, grade } = getSkillLevelGrade(skill);
-      if (grade > inputGrade) break;
-      tempSkills[name] = level;
-    }
-    return tempSkills;
-  }
 
   $: {
     if (selectedWeapon["Minimum Grade"] > selectedWeaponGrade) {
@@ -237,7 +226,9 @@
       <p>Report a bug</p>
     </a>
   </div>
-  <div class="flex flex-row flex-wrap sm:flex-nowrap gap-3 w-full max-w-screen-lg">
+  <div
+    class="flex flex-row flex-wrap md:flex-nowrap gap-3 w-full max-w-screen-lg"
+  >
     <div class="bg-slate-300 p-3 rounded-lg shrink-0">
       <p class="text-center font-bold text-lg mb-4">Stats</p>
       <div class="flex gap-x-2">
@@ -270,27 +261,26 @@
       </div>
     </div>
     <div class="bg-slate-300 p-3 rounded-lg shrink-0">
-      <p class="text-center font-bold text-lg mb-4">Active Skills</p>
+      <p class="text-center font-bold text-lg mb-4">Skills</p>
       <div class="flex gap-x-2 gap-y-2 relative">
         <div class="flex flex-col gap-y-2">
           {#each Object.entries(equippedSkills).sort() as [name, level], i}
             <!-- <p>{name}</p> -->
-            {#if i < 0}
             {@const skill = skills.find((s) => s["Name"] === name)}
             <Tooltip>
               <p slot="label">{name}</p>
               <p slot="description">{skill["Description"]}</p>
-            </Tooltip>  
-            {/if}
+            </Tooltip>
           {/each}
         </div>
         <div class="flex flex-col gap-y-2">
           {#each Object.entries(equippedSkills).sort() as [name, level], i}
             {@const skill = skills.find((s) => s["Name"] === name)}
             <!-- <p>{level} / {skill["Maximum Level"]}</p> -->
-            {#if i < 1}
             <Tooltip>
-              <p slot="label" class="whitespace-nowrap">{level} / {skill["Maximum Level"]}</p>
+              <p slot="label" class="whitespace-nowrap">
+                {level} / {skill["Maximum Level"]}
+              </p>
               <ul slot="description">
                 {@const descriptions = skill["Level Descriptions"].split(";")}
                 {@const l = Math.min(level, descriptions.length - 1)}
@@ -301,9 +291,74 @@
                 {/each}
               </ul>
             </Tooltip>
-            {/if}
           {/each}
         </div>
+      </div>
+    </div>
+
+    <div class="bg-slate-300 p-3 rounded-lg grow">
+      <p class="text-center font-bold text-lg mb-4">Equipped Set</p>
+      <div class="grid grid-cols-2 gap-x-2 gap-y-2">
+        {#if selectedWeapon.hasOwnProperty("Tree")}
+          <ArmorButton
+            armorName={selectedWeapon["Tree"]}
+            armorSkills={selectedWeapon["Equipment Skills"]}
+            element={selectedWeapon["Element"] !== "None"
+              ? selectedWeapon["Element"]
+              : ""}
+            isSelected={true}
+            selectedGrade={selectedWeaponGrade}
+          />
+        {/if}
+        {#if selectedHelm.hasOwnProperty("Tree")}
+          <ArmorButton
+            armorName={selectedHelm["Tree"]}
+            armorSkills={selectedHelm["Helm Skills"]}
+            element={""}
+            isSelected={true}
+            selectedGrade={selectedHelmGrade}
+          />
+        {/if}
+
+        {#if selectedMail.hasOwnProperty("Tree")}
+          <ArmorButton
+            armorName={selectedMail["Tree"]}
+            armorSkills={selectedMail["Mail Skills"]}
+            element={""}
+            isSelected={true}
+            selectedGrade={selectedMailGrade}
+          />
+        {/if}
+
+        {#if selectedArms.hasOwnProperty("Tree")}
+          <ArmorButton
+            armorName={selectedArms["Tree"]}
+            armorSkills={selectedArms["Arms Skills"]}
+            element={""}
+            isSelected={true}
+            selectedGrade={selectedArmsGrade}
+          />
+        {/if}
+
+        {#if selectedWaist.hasOwnProperty("Tree")}
+          <ArmorButton
+            armorName={selectedWaist["Tree"]}
+            armorSkills={selectedWaist["Waist Skills"]}
+            element={""}
+            isSelected={true}
+            selectedGrade={selectedWaistGrade}
+          />
+        {/if}
+
+        {#if selectedLegs.hasOwnProperty("Tree")}
+          <ArmorButton
+            armorName={selectedLegs["Tree"]}
+            armorSkills={selectedLegs["Legs Skills"]}
+            element={""}
+            isSelected={true}
+            selectedGrade={selectedLegsGrade}
+          />
+        {/if}
       </div>
     </div>
   </div>
@@ -312,12 +367,6 @@
     class="flex flex-col w-full max-w-screen-lg min-h-[838px] bg-slate-300 rounded-lg mt-3"
   >
     <div class="flex px-3 pt-3 gap-x-3">
-      <input
-        class="grow rounded-md px-2 py-1 text-xl"
-        bind:value={searchText}
-        type="text"
-        placeholder="Search name, skills, monster..."
-      />
       <button
         class="px-2 bg-slate-100 rounded-md hover:bg-slate-400"
         on:click={() => {
@@ -333,6 +382,13 @@
           /></svg
         >
       </button>
+
+      <input
+        class="grow rounded-md px-2 py-1 text-xl"
+        bind:value={searchText}
+        type="text"
+        placeholder="Search name, skills, monster..."
+      />
     </div>
     {#if isShowMoreOptions}
       <div class="grid grid-cols-3 md:grid-cols-6 px-3 gap-x-3">
@@ -341,13 +397,16 @@
             class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
             for="weapon-grade">Weapon Grade</label
           >
-          <input
-            bind:value={selectedWeaponGrade}
-            class="w-full ps-2"
-            id="weapon-grade"
-            type="number"
+          <GradeButton
+            grade={selectedWeaponGrade}
+            onDecrease={() => {
+              selectedWeaponGrade--;
+            }}
+            onIncrease={() => {
+              selectedWeaponGrade++;
+            }}
             min={selectedWeapon["Minimum Grade"]}
-            max="10"
+            max={10}
           />
         </div>
         <div class="col-span-1 flex flex-col rounded-md border-slate-300">
@@ -355,13 +414,16 @@
             class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
             for="helm-grade">Helm Grade</label
           >
-          <input
-            bind:value={selectedHelmGrade}
-            class="w-full ps-2"
-            id="helm-grade"
-            type="number"
-            min="1"
-            max="10"
+          <GradeButton
+            grade={selectedHelmGrade}
+            onDecrease={() => {
+              selectedHelmGrade--;
+            }}
+            onIncrease={() => {
+              selectedHelmGrade++;
+            }}
+            min={1}
+            max={10}
           />
         </div>
         <div class="col-span-1 flex flex-col rounded-md border-slate-300">
@@ -369,13 +431,16 @@
             class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
             for="mail-grade">Mail Grade</label
           >
-          <input
-            bind:value={selectedMailGrade}
-            class="w-full ps-2"
-            id="mail-grade"
-            type="number"
-            min="1"
-            max="10"
+          <GradeButton
+            grade={selectedMailGrade}
+            onDecrease={() => {
+              selectedMailGrade--;
+            }}
+            onIncrease={() => {
+              selectedMailGrade++;
+            }}
+            min={1}
+            max={10}
           />
         </div>
         <div class="col-span-1 flex flex-col rounded-md border-slate-300">
@@ -383,13 +448,16 @@
             class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
             for="arms-grade">Arms Grade</label
           >
-          <input
-            bind:value={selectedArmsGrade}
-            class="w-full ps-2"
-            id="arms-grade"
-            type="number"
-            min="1"
-            max="10"
+          <GradeButton
+            grade={selectedArmsGrade}
+            onDecrease={() => {
+              selectedArmsGrade--;
+            }}
+            onIncrease={() => {
+              selectedArmsGrade++;
+            }}
+            min={1}
+            max={10}
           />
         </div>
         <div class="col-span-1 flex flex-col rounded-md border-slate-300">
@@ -397,13 +465,16 @@
             class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
             for="waist-grade">Waist Grade</label
           >
-          <input
-            bind:value={selectedWaistGrade}
-            class="w-full ps-2"
-            id="waist-grade"
-            type="number"
-            min="1"
-            max="10"
+          <GradeButton
+            grade={selectedWaistGrade}
+            onDecrease={() => {
+              selectedWaistGrade--;
+            }}
+            onIncrease={() => {
+              selectedWaistGrade++;
+            }}
+            min={1}
+            max={10}
           />
         </div>
         <div class="col-span-1 flex flex-col rounded-md border-slate-300">
@@ -411,19 +482,25 @@
             class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"
             for="legs-grade">Legs Grade</label
           >
-          <input
-            bind:value={selectedLegsGrade}
-            class="w-full ps-2"
-            id="legs-grade"
-            type="number"
-            min="1"
-            max="10"
+          <GradeButton
+            grade={selectedLegsGrade}
+            onDecrease={() => {
+              selectedLegsGrade--;
+            }}
+            onIncrease={() => {
+              selectedLegsGrade++;
+            }}
+            min={1}
+            max={10}
           />
         </div>
       </div>
     {/if}
     <div class="flex gap-x-3 gap-y-2 p-3 flex-wrap">
-      <select class="rounded-md hover:ring-slate-400 hover:ring-2" bind:value={selectedWeaponCategory}>
+      <select
+        class="rounded-md hover:ring-slate-400 hover:ring-2"
+        bind:value={selectedWeaponCategory}
+      >
         <option class="hover:bg-slate-400" value="Sword and Shield"
           >Sword and Shield</option
         >

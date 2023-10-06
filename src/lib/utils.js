@@ -15,3 +15,16 @@ export function getSkillLevelGrade(string) {
     let level = parseInt(l);
     return {name, level, grade};
 }
+
+export function getSkills(inputSkills, inputGrade) {
+    if (!inputSkills) return {};
+    let skills = inputSkills.split("\n");
+    let tempSkills = {};
+    for (let i = 0; i < skills.length; i++) {
+      let skill = skills[i];
+      let { name, level, grade } = getSkillLevelGrade(skill);
+      if (grade > inputGrade) break;
+      tempSkills[name] = level;
+    }
+    return tempSkills;
+  }
