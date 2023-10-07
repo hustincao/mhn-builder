@@ -1,7 +1,7 @@
 <script>
-    import { onMount } from "svelte";
-    import { slide } from 'svelte/transition';
-	import { quintOut } from 'svelte/easing';
+  import { onMount, afterUpdate } from "svelte";
+  import { slide } from "svelte/transition";
+  import { quintOut } from "svelte/easing";
   import { ArmorButton, CheckBox, SelectWeapon } from "$lib";
   import GradeButton from "$lib/components/grade-button.svelte";
   import Tooltip from "$lib/components/tooltip.svelte";
@@ -15,6 +15,9 @@
     lightbowguns = [],
     bows = [],
     skills = [];
+
+  let updateTooltips = []; // Observer pattern to update tooltip positions
+
   const armorGrades = [20, 34, 49, 65, 82, 100, 119, 139, 160, 182];
 
   let selectedWeapon = {};
@@ -41,6 +44,10 @@
     selectedArms = armors[0];
     selectedWaist = armors[0];
     selectedLegs = armors[0];
+  });
+
+  afterUpdate(()=>{
+    updateTooltips.forEach(u => u());
   });
 
   $: health = 100;
@@ -147,7 +154,6 @@
 
   let equippedSkills = {};
 
-
   $: {
     if (selectedWeapon["Minimum Grade"] > selectedWeaponGrade) {
       selectedWeaponGrade = selectedWeapon["Minimum Grade"];
@@ -210,7 +216,7 @@
       }
     }
   }
-
+  
 </script>
 
 <div class="flex flex-col items-center min-h-screen bg-slate-700">
@@ -265,19 +271,29 @@
       </div>
     </div>
     <div class="bg-slate-300 p-3 rounded-lg shrink-0">
-      <div class="flex items-center justify-center gap-x-2  mb-4">
-      <p class="font-bold text-lg">Skills</p>
-      <Tooltip>
-        <svg slot="label" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
-        <p slot="description">Hover/tap the name to get a general skill description. Hover/tap the skill level to get a more detailed description.</p>
-    </Tooltip>
-  </div>
+      <div class="flex items-center justify-center gap-x-2 mb-4">
+        <p class="font-bold text-lg">Skills</p>
+        <Tooltip addToObserverList={(u)=>{updateTooltips.push(u)}}>
+          <svg
+            slot="label"
+            xmlns="http://www.w3.org/2000/svg"
+            height="1em"
+            viewBox="0 0 512 512"
+            ><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
+              d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"
+            /></svg
+          >
+          <p slot="description">
+            Hover/tap the name to get a general skill description. Hover/tap the
+            skill level to get a more detailed description.
+          </p>
+        </Tooltip>
+      </div>
       <div class="flex gap-x-2 gap-y-2 relative">
         <div class="flex flex-col gap-y-2">
           {#each Object.entries(equippedSkills).sort() as [name, level], i}
-            <!-- <p>{name}</p> -->
             {@const skill = skills.find((s) => s["Name"] === name)}
-            <Tooltip>
+            <Tooltip addToObserverList={(u)=>{updateTooltips.push(u)}}>
               <p slot="label" class="bg-slate-100 rounded-lg px-2">{name}</p>
               <p slot="description">{skill["Description"]}</p>
             </Tooltip>
@@ -286,9 +302,11 @@
         <div class="flex flex-col gap-y-2">
           {#each Object.entries(equippedSkills).sort() as [name, level], i}
             {@const skill = skills.find((s) => s["Name"] === name)}
-            <!-- <p>{level} / {skill["Maximum Level"]}</p> -->
-            <Tooltip>
-              <p slot="label" class="whitespace-nowrap bg-slate-100 rounded-lg px-2">
+            <Tooltip addToObserverList={(u)=>{updateTooltips.push(u)}}>
+              <p
+                slot="label"
+                class="whitespace-nowrap bg-slate-100 rounded-lg px-2"
+              >
                 {level} / {skill["Maximum Level"]}
               </p>
               <ul slot="description">
@@ -401,7 +419,15 @@
       />
     </div>
     {#if isShowMoreOptions}
-      <div transition:slide={{ delay: 10, duration: 300, easing: quintOut, axis: 'y' }} class="grid grid-cols-3 md:grid-cols-6 py-2 px-3 gap-x-3">
+      <div
+        transition:slide={{
+          delay: 10,
+          duration: 300,
+          easing: quintOut,
+          axis: "y",
+        }}
+        class="grid grid-cols-3 md:grid-cols-6 py-2 px-3 gap-x-3"
+      >
         <div class="col-span-1 flex flex-col rounded-md border-slate-300">
           <label
             class="whitespace-nowrap w-full bg-slate-300 p-1 font-bold text-sm"

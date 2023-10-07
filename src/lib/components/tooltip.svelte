@@ -1,23 +1,29 @@
 <script>
-
-  let screenWidth=0, overflow = 0;
+  export let addToObserverList;
+  let screenWidth = 0,
+    overflow = 0;
   let wrapperElement, tooltipWidth;
-  $: {
-    
-    if(screenWidth){
+
+  const updateFunction = () => {
+    if (screenWidth) {
       const left = wrapperElement?.getBoundingClientRect().left || 0;
       overflow = Math.min(0, screenWidth - (left + tooltipWidth));
     }
-  }
+  };
 
+  addToObserverList(updateFunction); // Adds update function to observer list
+  $: {
+    screenWidth; wrapperElement; tooltipWidth;
+    updateFunction();
+  }
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />
-<div class="relative" bind:this={wrapperElement} >
+<div class="relative" bind:this={wrapperElement}>
   <div class="peer">
     <slot name="label" />
   </div>
-  <div    
+  <div
     bind:offsetWidth={tooltipWidth}
     style={`left:${overflow}px`}
     role="tooltip"
