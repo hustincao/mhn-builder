@@ -1,6 +1,6 @@
 <script>
   import EquipmentSelectButton from "$lib/components/equipment-select-button.svelte";
-  import EqupimentSelectModal from "./equpiment-select-modal.svelte";
+  import EquipmentSelectModal from "./equipment-select-modal.svelte";
 
   // Component to display equipped set. Allows user to change the set through a modal.
   export let set;
@@ -8,10 +8,9 @@
   $: isModalOpen = false;
 
   function openModal() {
-    console.log("Open Modal");
     isModalOpen = true;
   }
-  $: console.log(isModalOpen);
+  $:console.log(set);
 </script>
 
 <div class="flex flex-col bg-slate-300 p-3 rounded-lg grow">
@@ -52,5 +51,5 @@
 </div>
 
 {#if isModalOpen}
-  <EqupimentSelectModal bind:isModalOpen />
+  <EquipmentSelectModal bind:set bind:isModalOpen />
 {/if}
