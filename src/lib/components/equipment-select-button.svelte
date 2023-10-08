@@ -53,12 +53,6 @@
   </button>
   <GradeButton
     bind:inputGrade
-    onDecrease={() => {
-      inputGrade -= 1;
-    }}
-    onIncrease={() => {
-      inputGrade += 1;
-    }}
     min={isEmpty ? 1 : equipment["Minimum Grade"]}
     max={10}
   />
