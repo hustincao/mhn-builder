@@ -1,6 +1,6 @@
 <script>
   import { getSkillLevelGrade } from "$lib/utils";
-  import GradeButton from "../lib/components/grade-button.svelte";
+  import GradeButton from "./grade-button.svelte";
 
   export let label;
   // export let labelIcon;

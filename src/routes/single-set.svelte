@@ -1,6 +1,6 @@
 <script>
-  import Stats from "./stats.svelte";
-  import Skills from "./skills.svelte";
+  import Stats from "./equipped-stats.svelte";
+  import Skills from "./equipped-skills.svelte";
   import EquippedSet from "./equipped-set.svelte";
   import { getSkills } from "$lib/utils";
 

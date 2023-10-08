@@ -1,12 +1,11 @@
 <script>
-  import { ArmorButton } from "$lib";
+  import EquipmentButton from "./equipment-button.svelte";
   import { slide } from "svelte/transition";
 
   export let value = {};
   export let list = [];
   export let nameKey = "";
   export let valueKey = "";
-  export let selectedGrade = 10;
   export let filter = "";
   export let title = "";
 
@@ -21,23 +20,24 @@
   };
 </script>
 
-<div in:slide={{ duration: 300 }} out:slide={{ duration: 300 }}>
-  <p class="font-bold text-center text-lg">{title}</p>
-  <div
-    class="flex overflow-x-scroll whitespace-nowrap gap-x-4 bg-slate-300 p-2"
-  >
+<div in:slide={{ duration: 300 }} out:slide={{ duration: 300 }} class="py-4 flex items-center">
+    <img
+        class="h-12 w-12 mx-2"
+        src={`/equipment-icons/${title.toLowerCase().replaceAll(" ", "")}.webp`}
+        alt={`Equipment ${title} Icon`}
+      />
+  <div class="flex overflow-x-auto whitespace-nowrap gap-x-4 p-2">
     {#if filteredList.length === 0}
-      <p class="italic text-center">No {title} found</p>
+      <p class="italic text-center text-white">No {title} found</p>
     {/if}
     {#each filteredList as armor}
-      <ArmorButton
+      <EquipmentButton
         armorName={armor[nameKey]}
         armorSkills={armor[valueKey]}
         element={"Element" in armor && armor["Element"] !== "None"
           ? armor["Element"]
           : ""}
         isSelected={value === armor}
-        {selectedGrade}
         onClick={() => {
           value = armor;
         }}

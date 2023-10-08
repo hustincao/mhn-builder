@@ -4,7 +4,7 @@
 
   import { setContext, onMount } from "svelte";
   import { writable } from "svelte/store";
-  import Set from "./set.svelte";
+  import Set from "./single-set.svelte";
 
 
   let errors = [];
