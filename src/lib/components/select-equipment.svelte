@@ -1,6 +1,6 @@
 <script>
     import { ArmorButton } from "$lib";
-    export let selectedValue = {};
+    export let value = {};
     export let list = [];
     export let nameKey = "";
     export let valueKey = "";
@@ -22,7 +22,7 @@
 <div>
     <p class="font-bold text-center text-lg">{title}</p>
     <div
-        class="flex overflow-x-scroll whitespace-nowrap gap-x-4 bg-slate-300 p-2 border-b-2 border-slate-500"
+        class="flex overflow-x-scroll whitespace-nowrap gap-x-4 bg-slate-300 p-2 "
     >
         {#if filteredList.length === 0}
             <p class="italic text-center">No {title} found</p>
@@ -32,10 +32,10 @@
                 armorName={armor[nameKey]}
                 armorSkills={armor[valueKey]}
                 element={"Element" in armor && armor["Element"] !== "None" ? armor["Element"] : ""}
-                isSelected={selectedValue === armor}
+                isSelected={value === armor}
                 {selectedGrade}
                 onClick={() => {
-                    selectedValue = armor;
+                    value = armor;
                 }}
             />
         {/each}
