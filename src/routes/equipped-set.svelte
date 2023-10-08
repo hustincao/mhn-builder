@@ -1,5 +1,5 @@
 <script>
-  import EquipmentSelectButton from "./equipment-select-button.svelte";
+  import EquipmentSelectButton from "../lib/components/equipped-set/equipped-select-button.svelte";
   import EquipmentSelectModal from "./equipment-select-modal.svelte";
 
   // Component to display equipped set. Allows user to change the set through a modal.
@@ -14,7 +14,7 @@
   }
 </script>
 
-<div class="flex flex-col bg-slate-300 p-3 rounded-lg grow">
+<div class="flex flex-col bg-gray-300 p-3 rounded-lg grow">
   <p class="text-center font-bold text-lg mb-4">Equipped Set</p>
   <div class="grid grid-cols-2 gap-x-2 gap-y-2 grow">
     <EquipmentSelectButton

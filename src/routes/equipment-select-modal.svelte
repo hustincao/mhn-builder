@@ -1,7 +1,7 @@
 <script>
   // Modal component to select equipment for a single set.
 
-  import SelectEquipment from "$lib/components/select-equipment.svelte";
+  import SelectEquipment from "$lib/components/modal/select-equipment.svelte";
   import Checkbox from "$lib/components/checkbox.svelte";
   import { onDestroy, getContext, onMount } from "svelte";
   import { fade } from "svelte/transition";
@@ -10,18 +10,6 @@
   export let set;
 
   let searchText;
-
-  // export let selectedWeaponCategory = "swordandshields";
-
-  // let isEnabled = {
-  //   Weapon: true,
-  //   Helm: true,
-  //   Mail: true,
-  //   Arms: true,
-  //   Waist: true,
-  //   Legs: true,
-  // };
-
   let modal_settings;
 
   getContext("modal_settings").subscribe((value) => {
@@ -44,17 +32,17 @@
   function getTitleFromWeapon(weapon) {
     switch (weapon) {
       case "swordandshields":
-        return "Sword and Shields";
+        return "Sword and Shield";
       case "hammers":
-        return "Hammers";
+        return "Hammer";
       case "greatswords":
-        return "Great Swords";
+        return "Great Sword";
       case "longswords":
-        return "Long Swords";
+        return "Long Sword";
       case "lightbowguns":
-        return "Light Bow Guns";
+        return "Light Bow Gun";
       case "bows":
-        return "Bows";
+        return "Bow";
       default:
         return "";
     }
@@ -68,7 +56,7 @@
     );
   }
 
-  onMount(()=>{
+  onMount(() => {
     document.body.classList.add("overflow-y-hidden");
   });
   onDestroy(() => {
@@ -77,9 +65,7 @@
       unsubscribe();
     });
   });
-
 </script>
-
 
 <div
   in:fade={{ duration: 100 }}
@@ -90,19 +76,21 @@
     on:click={() => {
       isModalOpen = false;
     }}
-    class="z-[51] absolute top-0 left-0 h-full w-full flex bg-black bg-opacity-50"
+    class="z-[51] absolute top-0 left-0 h-full w-full flex bg-black bg-opacity-80"
   />
 
   <div
-    class="z-[52] bg-slate-300 overflow-x-hidden overflow-y-auto max-h-full divide-y-2 mx-5 md:mx-40 my-40 divide-slate-400 max-w-full grow rounded-lg overscroll-contain"
+    class="z-[52] bg-slate-700 overflow-x-hidden overflow-y-auto max-h-full mx-5 md:mx-40 my-40 divide-slate-400 max-w-full grow rounded-lg overscroll-contain"
   >
     <div class="flex flex-col p-3 gap-y-2">
       <div class="flex flex-wrap-reverse justify-end gap-2">
         <input
+          name="Search field"
           class="grow rounded-md px-2 py-1 text-xl shrink"
           bind:value={searchText}
           type="text"
           placeholder="Search name, skills, monster..."
+          autocomplete="off"
         />
         <button
           class="bg-red-500 justify-self-end text-white font-bold rounded-md p-1"
@@ -125,15 +113,32 @@
           <option value="bows">Bow</option>
           <option value="lightbowguns">Light Bow Gun</option>
         </select>
-        <Checkbox label={"Weapon"} bind:isEnabled={modal_settings.isEnabled.Weapon} />
-        <Checkbox label={"Helm"} bind:isEnabled={modal_settings.isEnabled.Helm} />
-        <Checkbox label={"Mail"} bind:isEnabled={modal_settings.isEnabled.Mail} />
-        <Checkbox label={"Arms"} bind:isEnabled={modal_settings.isEnabled.Arms} />
-        <Checkbox label={"Waist"} bind:isEnabled={modal_settings.isEnabled.Waist} />
-        <Checkbox label={"Legs"} bind:isEnabled={modal_settings.isEnabled.Legs} />
+        <Checkbox
+          label={"Weapon"}
+          bind:isEnabled={modal_settings.isEnabled.Weapon}
+        />
+        <Checkbox
+          label={"Helm"}
+          bind:isEnabled={modal_settings.isEnabled.Helm}
+        />
+        <Checkbox
+          label={"Mail"}
+          bind:isEnabled={modal_settings.isEnabled.Mail}
+        />
+        <Checkbox
+          label={"Arms"}
+          bind:isEnabled={modal_settings.isEnabled.Arms}
+        />
+        <Checkbox
+          label={"Waist"}
+          bind:isEnabled={modal_settings.isEnabled.Waist}
+        />
+        <Checkbox
+          label={"Legs"}
+          bind:isEnabled={modal_settings.isEnabled.Legs}
+        />
       </div>
     </div>
-
     {#if modal_settings.isEnabled.Weapon}
       <SelectEquipment
         list={equipments[modal_settings.selectedWeaponCategory]}

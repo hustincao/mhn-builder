@@ -1,5 +1,4 @@
 <script>
-  // export let addToObserverList;
   let screenWidth = 0,
     overflow = 0;
   let wrapperElement, tooltipWidth;

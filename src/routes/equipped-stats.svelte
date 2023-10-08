@@ -1,8 +1,7 @@
 <script>
-  import Dropdown from "$lib/components/dropdown.svelte";
-  import Tooltip from "$lib/components/tooltip.svelte";
-
   // Component that displays the stats for a set.
+  import {Dropdown, Tooltip} from "$lib";
+
   export let set;
   export let setLength;
   export let deleteSet;
@@ -135,7 +134,7 @@
       : 0;
 </script>
 
-<div class="bg-slate-300 p-3 rounded-lg shrink-0">
+<div class="bg-gray-300 p-3 rounded-lg shrink-0">
   <div class="flex items-center mb-4 gap-x-2">
     <Dropdown>
       <svg
@@ -172,9 +171,7 @@
         >
       </div>
     </Dropdown>
-
     <p class="font-bold text-lg grow flex items-center justify-center gap-x-2">
-      Stats
       {#if !isHidden}
         <Tooltip>
           <svg
@@ -197,6 +194,7 @@
           </div>
         </Tooltip>
       {/if}
+      Stats
     </p>
     <button
       class="p-1 rounded-md hover:bg-slate-400"
