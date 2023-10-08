@@ -135,37 +135,37 @@
     "Name": "Offensive Guard",
     "Description": "Increases attack power for 10 seconds after executing a well-timed guard.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases attack power by 10% for 10 seconds after executing a well-timed guard.;Increases attack power by 15% for 10 seconds after executing a well-timed guard.;Increases attack power by 20% for 10 seconds after executing a well-timed guard.;Increases attack power by 30% for 10 seconds after executing a well-timed guard."
+    "Level Descriptions": "Increases attack power by 10% for 10 seconds after executing a well-timed guard.;Increases attack power by 15% for 10 seconds after executing a well-timed guard.;Increases attack power by 20% for 10 seconds after executing a well-timed guard.;Increases attack power by 30% for 10 seconds after executing a well-timed guard.;Increases attack power by 40% for 10 seconds after executing a well-timed guard."
   },
   {
     "Name": "Paralysis Attack",
     "Description": "Increases weapon's paralysis buildup value.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases weapon's paralysis buildup value by 50.;Increases weapon's paralysis buildup value by 75.;Increases weapon's paralysis buildup value by 100.;Increases weapon's paralysis buildup value by 125."
+    "Level Descriptions": "Increases weapon's paralysis buildup value by 50.;Increases weapon's paralysis buildup value by 75.;Increases weapon's paralysis buildup value by 100.;Increases weapon's paralysis buildup value by 125.;Increases weapon's paralysis buildup value by 150."
   },
   {
     "Name": "Paralysis Resistance",
     "Description": "Grants a chance to prevent paralysis status when damaged by a paralysis-inducing attack.",
     "Maximum Level": 5,
-    "Level Descriptions": "Grants a 20% chance of preventing paralysis status when damage by a paralysis-element attack.;Grants a 40% chance of preventing paralysis status when damage by a paralysis-element attack.;Grants a 60% chance of preventing paralysis status when damage by a paralysis-element attack.;Grants a 80% chance of preventing paralysis status when damage by a paralysis-element attack."
+    "Level Descriptions": "Grants a 20% chance of preventing paralysis status when damage by a paralysis-element attack.;Grants a 40% chance of preventing paralysis status when damage by a paralysis-element attack.;Grants a 60% chance of preventing paralysis status when damage by a paralysis-element attack.;Grants a 80% chance of preventing paralysis status when damage by a paralysis-element attack.;Prevents paralysis."
   },
   {
     "Name": "Partbreaker",
     "Description": "Increases damage to breakable parts.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases part damage accumulated on breakable parts by 5%.;Increases part damage accumulated on breakable parts by 10%.;Increases part damage accumulated on breakable parts by 20%.;Increases part damage accumulated on breakable parts by 30%."
+    "Level Descriptions": "Increases part damage accumulated on breakable parts by 5%.;Increases part damage accumulated on breakable parts by 10%.;Increases part damage accumulated on breakable parts by 20%.;Increases part damage accumulated on breakable parts by 30%.;Increases part damage accumulated on breakable parts by 40%."
   },
   {
     "Name": "Peak Performance",
     "Description": "Increases Attack Power when HP is full.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases attack power by 30 when your health is full.;Increases attack power by 60 when your health is full.;Increases attack power by 90 when your health is full.;Increases attack power by 130 when your health is full."
+    "Level Descriptions": "Increases attack power by 30 when your health is full.;Increases attack power by 60 when your health is full.;Increases attack power by 90 when your health is full.;Increases attack power by 130 when your health is full.;Increases attack power by 180 when your health is full."
   },
   {
     "Name": "Poison Attack",
     "Description": "Increases weapon's poison buildup value.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases weapon's poison buildup value by 50.;Increases weapon's poison buildup value by 75.;Increases weapon's poison buildup value by 100.;Increases weapon's poison buildup value by 125."
+    "Level Descriptions": "Increases weapon's poison buildup value by 50.;Increases weapon's poison buildup value by 75.;Increases weapon's poison buildup value by 100.;Increases weapon's poison buildup value by 125.;Increases weapon's poison buildup value by 150."
   },
   {
     "Name": "Poison Resistance",
@@ -177,78 +177,78 @@
     "Name": "Recoil Down",
     "Description": "Reduces bowgun recoil.",
     "Maximum Level": 3,
-    "Level Descriptions": "Slightly reduces bowgun recoil.;Moderately reduces bowgun recoil.;Greatly reduces bowgun recoil.;Slightly reduces reload time for bowguns."
+    "Level Descriptions": "Slightly reduces bowgun recoil.;Moderately reduces bowgun recoil.;Greatly reduces bowgun recoil."
   },
   {
     "Name": "Reload Speed",
     "Description": "Reduces reload time for bowguns.",
     "Maximum Level": 3,
-    "Level Descriptions": "Slightly reduces reload time for bowguns.;Moderately reduces reload time for bowguns.;Greatly reduces reload time for bowguns.;When taking damage, attack power is increased by 10% for 15 seconds."
+    "Level Descriptions": "Slightly reduces reload time for bowguns.;Moderately reduces reload time for bowguns.;Greatly reduces reload time for bowguns."
   },
   {
     "Name": "Resentment",
     "Description": "When taking damage, attack power is increased for 15 seconds.",
     "Maximum Level": 5,
-    "Level Descriptions": "When taking damage, attack power is increased by 10% for 15 seconds.;When taking damage, attack power is increased by 15% for 15 seconds.;When taking damage, attack power is increased by 20% for 15 seconds.;When taking damage, attack power is increased by 25% for 15 seconds."
+    "Level Descriptions": "When taking damage, attack power is increased by 10% for 15 seconds.;When taking damage, attack power is increased by 15% for 15 seconds.;When taking damage, attack power is increased by 20% for 15 seconds.;When taking damage, attack power is increased by 25% for 15 seconds.;When taking damage, attack power is increased by 30% for 15 seconds."
   },
   {
     "Name": "Rising Tide",
     "Description": "Increases attack power and defense as the hunt timer runs out.",
     "Maximum Level": 5,
-    "Level Descriptions": "Very slightly increases attack power and defense as the hunt timer runs out.;Slightly increases attack power and defense as the hunt timer runs out.;Moderately increases attack power and defense as the hunt timer runs out.;Greatly increases attack power and defense as the hunt timer runs out."
+    "Level Descriptions": "Very slightly increases attack power and defense as the hunt timer runs out.;Slightly increases attack power and defense as the hunt timer runs out.;Moderately increases attack power and defense as the hunt timer runs out.;Greatly increases attack power and defense as the hunt timer runs out.;Massively increases attack power and defense as the hunt timer runs out."
   },
   {
     "Name": "Slugger",
     "Description": "Increases stun power.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases stun power by 10%.;Increases stun power by 15%.;Increases stun power by 20%.;Increases stun power by 25%."
+    "Level Descriptions": "Increases stun power by 10%.;Increases stun power by 15%.;Increases stun power by 20%.;Increases stun power by 25%.;Increases stun power by 30%."
   },
   {
     "Name": "Sneak Attack",
     "Description": "Increases damage when attacking a monster from behind.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases damage by 10% when attacking a monster from behind.;Increases damage by 15% when attacking a monster from behind.;Increases damage by 20% when attacking a monster from behind.;Increases damage by 25% when attacking a monster from behind."
+    "Level Descriptions": "Increases damage by 10% when attacking a monster from behind.;Increases damage by 15% when attacking a monster from behind.;Increases damage by 20% when attacking a monster from behind.;Increases damage by 25% when attacking a monster from behind.;Increases damage by 30% when attacking a monster from behind."
   },
   {
     "Name": "Special Boost",
     "Description": "Increases the damage of Special Skills.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases the damage of Special Skills by 10%.;Increases the damage of Special Skills by 15%.;Increases the damage of Special Skills by 20%.;Increases the damage of Special Skills by 25%."
+    "Level Descriptions": "Increases the damage of Special Skills by 10%.;Increases the damage of Special Skills by 15%.;Increases the damage of Special Skills by 20%.;Increases the damage of Special Skills by 25%.;Increases the damage of Special Skills by 30%."
   },
   {
     "Name": "Thunder Attack",
     "Description": "Increases weapon's thunder-element value.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases weapon's thunder-element value by 50.;Increases weapon's thunder-element value by 100.;Increases weapon's thunder-element value by 200.;Increases weapon's thunder-element value by 350."
+    "Level Descriptions": "Increases weapon's thunder-element value by 50.;Increases weapon's thunder-element value by 100.;Increases weapon's thunder-element value by 200.;Increases weapon's thunder-element value by 350.;Increases weapon's thunder-element value by 500."
   },
   {
     "Name": "Thunder Resistance",
     "Description": "Decreases damage taken from thunder-element monsters.",
     "Maximum Level": 5,
-    "Level Descriptions": "Decreases damage taken from thunder-element monsters by 10%.;Decreases damage taken from thunder-element monsters by 20%.;Decreases damage taken from thunder-element monsters by 30%.;Decreases damage taken from thunder-element monsters by 40%."
+    "Level Descriptions": "Decreases damage taken from thunder-element monsters by 10%.;Decreases damage taken from thunder-element monsters by 20%.;Decreases damage taken from thunder-element monsters by 30%.;Decreases damage taken from thunder-element monsters by 40%.;Decreases damage taken from thunder-element monsters by 50%."
   },
   {
     "Name": "Water Attack",
     "Description": "Increases weapon's water-element value.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases weapon's water-element value by 50.;Increases weapon's water-element value by 100.;Increases weapon's water-element value by 200.;Increases weapon's water-element value by 350."
+    "Level Descriptions": "Increases weapon's water-element value by 50.;Increases weapon's water-element value by 100.;Increases weapon's water-element value by 200.;Increases weapon's water-element value by 350.;Increases weapon's water-element value by 500."
   },
   {
     "Name": "Water Resistance",
     "Description": "Decreases damage taken from water-element monsters.",
     "Maximum Level": 5,
-    "Level Descriptions": "Decreases damage taken from water-element monsters by 10%.;Decreases damage taken from water-element monsters by 20%.;Decreases damage taken from water-element monsters by 30%.;Decreases damage taken from water-element monsters by 40%."
+    "Level Descriptions": "Decreases damage taken from water-element monsters by 10%.;Decreases damage taken from water-element monsters by 20%.;Decreases damage taken from water-element monsters by 30%.;Decreases damage taken from water-element monsters by 40%.;Decreases damage taken from water-element monsters by 50%."
   },
   {
     "Name": "Weakness Exploit",
     "Description": "Increases affinity when attacking a monster's weak spot.",
     "Maximum Level": 5,
-    "Level Descriptions": "Increases affinity by 20% when attacking a monster's weak spot.;Increases affinity by 25% when attacking a monster's weak spot.;Increases affinity by 30% when attacking a monster's weak spot.;Increases affinity by 40% when attacking a monster's weak spot."
+    "Level Descriptions": "Increases affinity by 20% when attacking a monster's weak spot.;Increases affinity by 25% when attacking a monster's weak spot.;Increases affinity by 30% when attacking a monster's weak spot.;Increases affinity by 40% when attacking a monster's weak spot.; Increases affinity by 50% when attacking a monster's weakspot."
   },
   {
     "Name": "Windproof",
     "Description": "Reduces the effects of wind pressure.",
     "Maximum Level": 5,
-    "Level Descriptions": "Slightly reduces the effects of minor wind pressure.;Reduces the effects of minor wind pressure.;Negates minor wind pressure and slightly reduces the effects of major wind pressure.;Negates minor wind pressure and reduces the effects of major wind pressure."
+    "Level Descriptions": "Slightly reduces the effects of minor wind pressure.;Reduces the effects of minor wind pressure.;Negates minor wind pressure and slightly reduces the effects of major wind pressure.;Negates minor wind pressure and reduces the effects of major wind pressure.;Negates minor and major wind pressure."
   }
-]
+ ]
