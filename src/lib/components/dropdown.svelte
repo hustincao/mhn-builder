@@ -4,6 +4,8 @@
     overflow = 0;
   let wrapperElement, tooltipWidth;
 
+  let isShow = false;
+
   const updateFunction = () => {
     if (screenWidth) {
       const left = wrapperElement?.getBoundingClientRect().left || 0;
@@ -12,22 +14,29 @@
   };
 
   $: {
-    screenWidth; wrapperElement; tooltipWidth;
+    screenWidth;
+    wrapperElement;
+    tooltipWidth;
     updateFunction();
   }
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />
-<div class="relative" bind:this={wrapperElement}>
-  <div class="peer">
-    <slot name="label" />
-  </div>
+<button
+  class="relative bg-slate-50 p-2 rounded-md hover:bg-slate-400"
+  bind:this={wrapperElement}
+  on:click|stopPropagation={() => {
+    isShow = !isShow;
+  }}
+>
+  <slot name="label" />
   <div
     bind:offsetWidth={tooltipWidth}
     style={`left:${overflow}px`}
-    role="tooltip"
-    class="invisible w-max max-w-xs top-5 absolute z-50 p-2 peer-hover:visible peer-hover:opacity-100 opacity-0 transition-opacity bg-slate-900 rounded-lg font-semibold text-slate-50"
+    class={`${
+      isShow ? " visible opacity-100" : "invisible opacity-0"
+    } w-max max-w-xs top-5 absolute z-50 p-2 transition-opacity bg-slate-900 rounded-lg font-semibold text-slate-50`}
   >
     <slot name="description" />
   </div>
-</div>
+</button>
