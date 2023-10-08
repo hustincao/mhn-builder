@@ -1,6 +1,6 @@
 <script>
   import { getSkillLevelGrade } from "$lib/utils";
-  import GradeButton from "./grade-button.svelte";
+  import GradeButton from "../lib/components/grade-button.svelte";
 
   export let label;
   // export let labelIcon;
@@ -26,7 +26,7 @@
     <p class="font-bold flex items-center justify-center gap-x-2">
       <img
         class="h-5 w-5"
-        src={`/equipment-icons/${label.toLowerCase()}.webp`}
+        src={`/equipment-icons/${label.toLowerCase().replaceAll(" ", "")}.webp`}
         alt={`Equipment ${label} Icon`}
       />
       {isEmpty ? `Select ${label}` : equipment.Tree} 

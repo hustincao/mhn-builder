@@ -3,7 +3,7 @@
 
   import SelectEquipment from "$lib/components/select-equipment.svelte";
   import Checkbox from "$lib/components/checkbox.svelte";
-  import { onDestroy, getContext } from "svelte";
+  import { onDestroy, getContext, onMount } from "svelte";
   import { fade } from "svelte/transition";
 
   export let isModalOpen;
@@ -68,12 +68,18 @@
     );
   }
 
+  onMount(()=>{
+    document.body.classList.add("overflow-y-hidden");
+  });
   onDestroy(() => {
+    document.body.classList.remove("overflow-y-hidden");
     unsubscribes.forEach((unsubscribe) => {
       unsubscribe();
     });
   });
+
 </script>
+
 
 <div
   in:fade={{ duration: 100 }}
@@ -88,7 +94,7 @@
   />
 
   <div
-    class="z-[52] bg-slate-300 overflow-x-hidden overflow-y-auto max-h-full divide-y-2 mx-5 md:mx-40 my-40 divide-slate-400 max-w-full grow rounded-lg"
+    class="z-[52] bg-slate-300 overflow-x-hidden overflow-y-auto max-h-full divide-y-2 mx-5 md:mx-40 my-40 divide-slate-400 max-w-full grow rounded-lg overscroll-contain"
   >
     <div class="flex flex-col p-3 gap-y-2">
       <div class="flex flex-wrap-reverse justify-end gap-2">

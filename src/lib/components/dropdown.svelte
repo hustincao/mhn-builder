@@ -22,10 +22,19 @@
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />
-<button
+<div
+  tabindex="0"
+  role="button"
   class="relative bg-slate-50 p-2 rounded-md hover:bg-slate-400"
   bind:this={wrapperElement}
+  on:focusout={(e)=>{
+    if(e.relatedTarget === null) isShow = false;
+    // console.log(e);
+  }}
   on:click|stopPropagation={() => {
+    isShow = !isShow;
+  }}
+  on:keypress={() => {
     isShow = !isShow;
   }}
 >
@@ -39,4 +48,4 @@
   >
     <slot name="description" />
   </div>
-</button>
+</div>

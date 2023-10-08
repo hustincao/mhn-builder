@@ -1,5 +1,5 @@
 <script>
-  import EquipmentSelectButton from "$lib/components/equipment-select-button.svelte";
+  import EquipmentSelectButton from "./equipment-select-button.svelte";
   import EquipmentSelectModal from "./equipment-select-modal.svelte";
 
   // Component to display equipped set. Allows user to change the set through a modal.
@@ -18,7 +18,7 @@
   <p class="text-center font-bold text-lg mb-4">Equipped Set</p>
   <div class="grid grid-cols-2 gap-x-2 gap-y-2 grow">
     <EquipmentSelectButton
-      label={"Weapon"}
+      label={"Type" in set.Weapon ? set.Weapon["Type"] : "Weapon"}
       skillKey={"Equipment Skills"}
       bind:inputGrade={set.WeaponGrade}
       element={"Element" in set.Weapon ? set.Weapon["Element"] : ""}
