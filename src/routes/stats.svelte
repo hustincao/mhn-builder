@@ -1,11 +1,16 @@
 <script>
+  import Dropdown from "$lib/components/dropdown.svelte";
+
   // Component that displays the stats for a set.
   export let set;
+  export let setLength;
+  export let deleteSet;
+  export let moveSetUp;
+  export let moveSetDown;
+  export let index;
 
   $: health = 100;
-
   $: defense = 0;
-
   $: affinity = 0;
 
   $: attack = 0;
@@ -18,7 +23,43 @@
 </script>
 
 <div class="bg-slate-300 p-3 rounded-lg shrink-0">
-  <p class="text-center font-bold text-lg mb-4">Stats</p>
+  <div class="flex items-center mb-4">
+    <Dropdown>
+      <svg
+        slot="label"
+        xmlns="http://www.w3.org/2000/svg"
+        height="1em"
+        viewBox="0 0 128 512"
+        ><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
+          d="M64 360a56 56 0 1 0 0 112 56 56 0 1 0 0-112zm0-160a56 56 0 1 0 0 112 56 56 0 1 0 0-112zM120 96A56 56 0 1 0 8 96a56 56 0 1 0 112 0z"
+        /></svg
+      >
+      <div slot="description" class="flex flex-col gap-y-2">
+        <button
+          disabled={index === 0}
+          on:click={() => {
+            moveSetUp(index);
+          }}
+          class="enabled:hover:bg-slate-700 bg-slate-500 disabled:bg-slate-900 px-2 rounded-md">Move Up</button
+        >
+        <button
+        disabled={index === setLength - 1}
+          on:click={() => {
+            moveSetDown(index);
+          }}
+          class="enabled:hover:bg-slate-700 bg-slate-500 disabled:bg-slate-900 px-2 rounded-md">Move Down</button
+        >
+        <button
+          on:click={() => {
+            deleteSet(index);
+          }}
+          class="bg-red-700 hover:bg-red-900 px-2 rounded-md">Delete</button
+        >
+      </div>
+    </Dropdown>
+    <p class="text-center font-bold text-lg grow">Stats</p>
+  </div>
+
   <div class="flex gap-x-2">
     <div class="flex flex-col gap-y-2">
       <p class="bg-slate-100 rounded-lg px-2">Health</p>

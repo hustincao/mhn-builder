@@ -2,33 +2,145 @@
   // Main app page.
   // Holds main player data and controls all API calls/fetches.
 
-  import {setContext, onMount} from 'svelte';
-  import { writable } from 'svelte/store';
+  import { setContext, onMount } from "svelte";
+  import { writable } from "svelte/store";
   import Set from "./set.svelte";
 
+  let errors = [];
+
   const armors = writable([]);
-  // let armors = await fetch("/armors.json").then((r) => r.json());
-  setContext('armors', armors);
-  onMount(async ()=>{
-    console.log(await fetch("/armors.json").then((r) => r.json()))
-    armors.set(await fetch("/armors.json").then((r) => r.json()));
+  setContext("armors", armors);
+
+  const skills = writable([]);
+  setContext("skills", skills);
+
+  const swordandshields = writable([]);
+  setContext("swordandshields", swordandshields);
+
+  const greatswords = writable([]);
+  setContext("greatswords", greatswords);
+
+  const longswords = writable([]);
+  setContext("longswords", longswords);
+
+  const hammers = writable([]);
+  setContext("hammers", hammers);
+
+  const bows = writable([]);
+  setContext("bows", bows);
+
+  const lightbowguns = writable([]);
+  setContext("lightbowguns", lightbowguns);
+
+  onMount(async () => {
+    fetch("/armors.json")
+      .then((r) => r.json())
+      .then((j) => armors.set(j))
+      .catch(() => {
+        errors = [...errors, "Error getting /armors.json"];
+      });
+    fetch("/skills.json")
+      .then((r) => r.json())
+      .then((j) => skills.set(j))
+      .catch(() => {
+        errors = [...errors, "Error getting /skills.json"];
+      });
+    fetch("/sword-and-shields.json")
+      .then((r) => r.json())
+      .then((j) => swordandshields.set(j))
+      .catch(() => {
+        errors = [...errors, "Error getting /sword-and-shields.json"];
+      });
+    fetch("/great-swords.json")
+      .then((r) => r.json())
+      .then((j) => greatswords.set(j))
+      .catch(() => {
+        errors = [...errors, "Error getting /great-swords.json"];
+      });
+    fetch("/long-swords.json")
+      .then((r) => r.json())
+      .then((j) => longswords.set(j))
+      .catch(() => {
+        errors = [...errors, "Error getting /long-swords.json"];
+      });
+    fetch("/hammers.json")
+      .then((r) => r.json())
+      .then((j) => hammers.set(j))
+      .catch(() => {
+        errors = [...errors, "Error getting /hammers.json"];
+      });
+    fetch("/bows.json")
+      .then((r) => r.json())
+      .then((j) => bows.set(j))
+      .catch(() => {
+        errors = [...errors, "Error getting /bows.json"];
+      });
+    fetch("/light-bow-guns.json")
+      .then((r) => r.json())
+      .then((j) => lightbowguns.set(j))
+      .catch(() => {
+        errors = [...errors, "Error getting /light-bow-guns.json"];
+      });
   });
 
   // A constant object that represents all the data a user can change for a set
   const PLAYER_SET_OBJECT = {
     Weapon: {},
+    WeaponGrade: 1,
     Helm: {},
+    HelmGrade: 1,
     Mail: {},
+    MailGrade: 1,
     Arms: {},
+    ArmsGrade: 1,
     Waist: {},
+    WaistGrade: 1,
     Legs: {},
+    LegsGrade: 1,
   };
 
+  // let user_sets = [{ ...PLAYER_SET_OBJECT }];
   let user_sets = [{ ...PLAYER_SET_OBJECT }];
+  let storeToLocalStorage;
+
+  onMount(() => {
+    if (localStorage.getItem("user_sets")) {
+      user_sets = JSON.parse(localStorage.getItem("user_sets"));
+    }
+    storeToLocalStorage = (s) => {
+      localStorage.setItem("user_sets", JSON.stringify(s));
+    };
+  });
+
+  $: {
+    if (storeToLocalStorage) {
+      storeToLocalStorage(user_sets);
+    }
+  }
+
+  function addSet() {
+    user_sets = [...user_sets, { ...PLAYER_SET_OBJECT }];
+  }
+  function moveSetUp(i) {
+    const set = { ...user_sets[i] };
+    user_sets[i] = user_sets[i-1];
+    user_sets[i-1] = set;
+    // user_sets.splice(i, 1).splice(i-1,0,);
+    // user_sets = user_sets;
+  }
+  function moveSetDown(i) {
+    const set = { ...user_sets[i] };
+    user_sets[i] = user_sets[i+1];
+    user_sets[i+1] = set;
+  }
+  function deleteSet(i) {
+    user_sets.splice(i, 1);
+    user_sets = user_sets;
+  }
 </script>
 
-<div class="flex flex-col items-center min-h-screen bg-slate-700">
-  <div class="flex w-full max-w-screen-lg justify-between flex-wrap px-3 my-4">
+<div class="flex flex-col items-center min-h-screen gap-y-16 py-8 bg-slate-700">
+  <div class="flex w-full max-w-screen-lg justify-between flex-wrap px-3">
     <h1 class="text-3xl font-bold text-slate-300">
       Monster Hunter Now Set Builder
     </h1>
@@ -44,11 +156,14 @@
       <p>Report bugs or issues</p>
     </a>
   </div>
-  <div
-    class="flex flex-row flex-wrap md:flex-nowrap gap-3 w-full max-w-screen-lg"
+  {#each errors as error}
+    <p class="text-red-600 font-bold">{error}</p>
+  {/each}
+  {#each user_sets as set, index}
+    <Set bind:set {deleteSet} {moveSetUp} {moveSetDown} {index} setLength={user_sets.length} />
+  {/each}
+  <button
+    class="bg-slate-50 flex w-full max-w-screen-lg rounded-lg justify-center font-bold p-3 hover:bg-slate-400"
+    on:click={addSet}>Add another set</button
   >
-    {#each user_sets as set}
-      <Set {set} />
-    {/each}
-  </div>
 </div>

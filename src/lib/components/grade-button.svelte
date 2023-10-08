@@ -6,11 +6,11 @@
   export let max;
 </script>
 
-<div class="flex justify-between bg-slate-50 rounded-lg">
+<div class="flex justify-between bg-slate-700 text-white rounded-b-lg">
   <button
     on:click={onDecrease}
     disabled={grade <= min}
-    class="enabled:hover:bg-slate-400 enabled:bg-slate-900 enabled:fill-white rounded-s-lg px-2"
+    class="enabled:hover:bg-slate-500 enabled:bg-slate-900 disabled:fill-black fill-white disabled:bg-slate-700 rounded-bl-lg px-2"
   >
     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
       ><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path
@@ -19,12 +19,12 @@
     >
   </button>
 
-  {grade}
+  <p>Grade {grade}</p>
 
   <button
     on:click={onIncrease}
     disabled={grade >= max}
-    class="enabled:hover:bg-slate-500 enabled:bg-slate-900 enabled:fill-white rounded-e-lg px-2"
+    class="enabled:hover:bg-slate-500 enabled:bg-slate-900 disabled:fill-black fill-white disabled:bg-slate-700  rounded-br-lg px-2"
   >
     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
       ><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path

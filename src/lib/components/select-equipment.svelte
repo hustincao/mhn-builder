@@ -20,9 +20,9 @@
 </script>
 
 <div>
-    <!-- <p class="font-bold text-center text-lg">{title}</p> -->
+    <p class="font-bold text-center text-lg">{title}</p>
     <div
-        class="flex overflow-x-scroll whitespace-nowrap gap-x-4 bg-slate-300 p-2 border-b-2 border-slate-500"
+        class="flex overflow-x-scroll whitespace-nowrap gap-x-4 bg-slate-300 p-2 "
     >
         {#if filteredList.length === 0}
             <p class="italic text-center">No {title} found</p>

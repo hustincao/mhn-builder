@@ -1,5 +1,5 @@
 <script>
-  export let addToObserverList;
+  // export let addToObserverList;
   let screenWidth = 0,
     overflow = 0;
   let wrapperElement, tooltipWidth;
@@ -11,7 +11,6 @@
     }
   };
 
-  addToObserverList(updateFunction); // Adds update function to observer list
   $: {
     screenWidth; wrapperElement; tooltipWidth;
     updateFunction();
