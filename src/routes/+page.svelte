@@ -83,6 +83,21 @@
       });
   });
 
+  const MODAL_SETTINGS = {
+    selectedWeaponCategory: "swordandshields",
+    isEnabled: {
+      Weapon: true,
+      Helm: true,
+      Mail: true,
+      Arms: true,
+      Waist: true,
+      Legs: true,
+    },
+  };
+
+  const modal_settings = writable({...MODAL_SETTINGS});
+  setContext("modal_settings", modal_settings);
+
   // A constant object that represents all the data a user can change for a set
   const PLAYER_SET_OBJECT = {
     Weapon: {},
@@ -123,13 +138,13 @@
   }
   function moveSetUp(i) {
     const set = { ...user_sets[i] };
-    user_sets[i] = user_sets[i-1];
-    user_sets[i-1] = set;
+    user_sets[i] = user_sets[i - 1];
+    user_sets[i - 1] = set;
   }
   function moveSetDown(i) {
     const set = { ...user_sets[i] };
-    user_sets[i] = user_sets[i+1];
-    user_sets[i+1] = set;
+    user_sets[i] = user_sets[i + 1];
+    user_sets[i + 1] = set;
   }
   function deleteSet(i) {
     user_sets.splice(i, 1);
@@ -158,7 +173,14 @@
     <p class="text-red-600 font-bold">{error}</p>
   {/each}
   {#each user_sets as set, index}
-    <Set bind:set {deleteSet} {moveSetUp} {moveSetDown} {index} setLength={user_sets.length} />
+    <Set
+      bind:set
+      {deleteSet}
+      {moveSetUp}
+      {moveSetDown}
+      {index}
+      setLength={user_sets.length}
+    />
   {/each}
   <button
     class="bg-slate-50 flex w-full max-w-screen-lg rounded-lg justify-center font-bold p-3 hover:bg-slate-400"
