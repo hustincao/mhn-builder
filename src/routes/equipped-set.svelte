@@ -18,42 +18,42 @@
     <EquipmentSelectButton
       label={"Weapon"}
       skillKey={"Equipment Skills"}
-      bind:grade={set.WeaponGrade}
+      bind:inputGrade={set.WeaponGrade}
       equipment={set.Weapon}
       onClickFunction={openModal}
     />
     <EquipmentSelectButton
       label={"Helm"}
       skillKey={"Helm Skills"}
-      bind:grade={set.HelmGrade}
+      bind:inputGrade={set.HelmGrade}
       equipment={set.Helm}
       onClickFunction={openModal}
     />
     <EquipmentSelectButton
       label={"Mail"}
       skillKey={"Mail Skills"}
-      bind:grade={set.MailGrade}
+      bind:inputGrade={set.MailGrade}
       equipment={set.Mail}
       onClickFunction={openModal}
     />
     <EquipmentSelectButton
       label={"Arms"}
       skillKey={"Arms Skills"}
-      bind:grade={set.ArmsGrade}
+      bind:inputGrade={set.ArmsGrade}
       equipment={set.Arms}
       onClickFunction={openModal}
     />
     <EquipmentSelectButton
       label={"Waist"}
       skillKey={"Waist Skills"}
-      bind:grade={set.WaistGrade}
+      bind:inputGrade={set.WaistGrade}
       equipment={set.Waist}
       onClickFunction={openModal}
     />
     <EquipmentSelectButton
       label={"Legs"}
       skillKey={"Legs Skills"}
-      bind:grade={set.LegsGrade}
+      bind:inputGrade={set.LegsGrade}
       equipment={set.Legs}
       onClickFunction={openModal}
     />

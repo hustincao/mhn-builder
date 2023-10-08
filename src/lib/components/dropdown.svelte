@@ -22,24 +22,14 @@
 </script>
 
 <svelte:window bind:outerWidth={screenWidth} />
-<div class="relative" bind:this={wrapperElement}
-  >
-  <button
-    class="bg-slate-50 p-2 rounded-md hover:bg-slate-400"
-    on:click={() => {
-      isShow = !isShow;
-    }}
-    on:focusout={({ relatedTarget }) => {
-      if (
-        relatedTarget instanceof HTMLElement &&
-        wrapperElement.contains(relatedTarget)
-      )
-        return;
-      isShow = false;
-    }}
-  >
-    <slot name="label" />
-  </button>
+<button
+  class="relative bg-slate-50 p-2 rounded-md hover:bg-slate-400"
+  bind:this={wrapperElement}
+  on:click|stopPropagation={() => {
+    isShow = !isShow;
+  }}
+>
+  <slot name="label" />
   <div
     bind:offsetWidth={tooltipWidth}
     style={`left:${overflow}px`}
@@ -49,4 +39,4 @@
   >
     <slot name="description" />
   </div>
-</div>
+</button>

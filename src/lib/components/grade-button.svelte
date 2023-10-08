@@ -1,5 +1,5 @@
 <script>
-  export let grade;
+  export let inputGrade;
   export let onDecrease;
   export let onIncrease;
   export let min;
@@ -9,7 +9,7 @@
 <div class="flex justify-between bg-slate-700 text-white rounded-b-lg">
   <button
     on:click={onDecrease}
-    disabled={grade <= min}
+    disabled={inputGrade <= min}
     class="enabled:hover:bg-slate-500 enabled:bg-slate-900 disabled:fill-black fill-white disabled:bg-slate-700 rounded-bl-lg px-2"
   >
     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"
@@ -19,11 +19,11 @@
     >
   </button>
 
-  <p>Grade {grade}</p>
+  <p>Grade {inputGrade}</p>
 
   <button
     on:click={onIncrease}
-    disabled={grade >= max}
+    disabled={inputGrade >= max}
     class="enabled:hover:bg-slate-500 enabled:bg-slate-900 disabled:fill-black fill-white disabled:bg-slate-700  rounded-br-lg px-2"
   >
     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"

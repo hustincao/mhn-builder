@@ -125,8 +125,6 @@
     const set = { ...user_sets[i] };
     user_sets[i] = user_sets[i-1];
     user_sets[i-1] = set;
-    // user_sets.splice(i, 1).splice(i-1,0,);
-    // user_sets = user_sets;
   }
   function moveSetDown(i) {
     const set = { ...user_sets[i] };
