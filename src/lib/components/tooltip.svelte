@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
 
   let screenWidth = 0,
-    overflow = 0;
+    overflow = -320; // Max w xs
   let wrapperElement, tooltipWidth;
 
   const updateFunction = (screenWidth, wrapperElement, tooltipWidth) => {
