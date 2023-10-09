@@ -7,6 +7,7 @@
   export let deleteSet;
   export let moveSetUp;
   export let moveSetDown;
+  export let duplicate;
   export let index;
   export let equippedSkills;
 
@@ -164,10 +165,17 @@
           >Move Down</button
         >
         <button
+        on:click={() => {
+          duplicate(index);
+        }}
+          class="enabled:hover:bg-slate-700 bg-slate-500 disabled:bg-slate-900 px-2 rounded-md"
+          >
+        Duplicate</button>
+        <button
           on:click={() => {
             deleteSet(index);
           }}
-          class="bg-red-700 hover:bg-red-900 px-2 rounded-md">Delete</button
+          class="mt-2 bg-red-700 hover:bg-red-900 px-2 rounded-md">Delete</button
         >
       </div>
     </Dropdown>

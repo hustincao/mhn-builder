@@ -80,7 +80,7 @@
   />
 
   <div
-    class="z-[52] bg-slate-700 overflow-x-hidden overflow-y-auto max-h-full mx-5 md:mx-40 my-40 divide-slate-400 max-w-full grow rounded-lg overscroll-contain"
+    class="z-[52] bg-slate-700 overflow-x-hidden overflow-y-auto max-h-full mx-5 md:mx-40 my-40 divide-slate-400 max-w-full grow rounded-lg"
   >
     <div class="flex flex-col p-3 gap-y-2">
       <div class="flex flex-wrap-reverse justify-end gap-2">

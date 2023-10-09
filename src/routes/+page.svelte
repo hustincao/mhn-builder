@@ -191,6 +191,9 @@
   function addSet() {
     user_sets = [...user_sets, { ...PLAYER_SET_OBJECT }];
   }
+  function duplicate(i){
+    user_sets = [...user_sets, {...user_sets[i]}];
+  }
   function moveSetUp(i) {
     const set = { ...user_sets[i] };
     user_sets[i] = user_sets[i - 1];
@@ -231,6 +234,7 @@
       {#each user_sets as set, index}
         <Set
           bind:set
+          {duplicate}
           {deleteSet}
           {moveSetUp}
           {moveSetDown}
