@@ -25,7 +25,7 @@
   const HealthBoost = [10, 20, 30, 40, 50];
   $: health_bonus =
     "Health Boost" in equippedSkills
-      ? HealthBoost[equippedSkills["Health Boost"] - 1]
+      ? HealthBoost[Math.min(equippedSkills["Health Boost"], HealthBoost.length) - 1]
       : 0;
 
   $: defense =
