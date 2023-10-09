@@ -3,6 +3,7 @@
   import Skills from "./equipped-skills.svelte";
   import EquippedSet from "./equipped-set.svelte";
   import { getSkills } from "$lib/utils";
+  import { slide } from "svelte/transition";
 
   // Component that holds and allows user to change a single set
   export let set;
@@ -11,6 +12,7 @@
   export let deleteSet; // function to delete a set;
   export let moveSetUp; // function to move set up
   export let moveSetDown; // function to move set down
+  export let duplicate; // function to duplicate a set
 
   $: equippedSkills = getEquippedSkills(set);
 
@@ -74,10 +76,19 @@
 </script>
 
 <div
-  class="flex flex-row flex-wrap md:flex-nowrap gap-2 w-full max-w-screen-lg "
+  in:slide={{ duration: 300 }}
+  class="flex flex-row flex-wrap md:flex-nowrap gap-2 w-full max-w-screen-lg"
 >
-
-  <Stats bind:set {equippedSkills} {deleteSet} {moveSetUp} {moveSetDown} {index} {setLength}/>
+  <Stats
+    bind:set
+    {equippedSkills}
+    {deleteSet}
+    {moveSetUp}
+    {moveSetDown}
+    {duplicate}
+    {index}
+    {setLength}
+  />
   <Skills {equippedSkills} />
   <EquippedSet bind:set />
 </div>

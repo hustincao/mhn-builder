@@ -1,18 +1,24 @@
 <script>
+  import { onMount } from "svelte";
+
   let screenWidth = 0,
     overflow = 0;
   let wrapperElement, tooltipWidth;
 
-  const updateFunction = () => {
+  const updateFunction = (screenWidth, wrapperElement, tooltipWidth) => {
     if (screenWidth) {
       const left = wrapperElement?.getBoundingClientRect().left || 0;
       overflow = Math.min(0, screenWidth - (left + tooltipWidth));
     }
   };
 
+  onMount(()=>{
+    updateFunction(screenWidth, wrapperElement, tooltipWidth);
+  })
+
   $: {
-    screenWidth; wrapperElement; tooltipWidth;
-    updateFunction();
+    
+    updateFunction(screenWidth, wrapperElement, tooltipWidth);
   }
 </script>
 
