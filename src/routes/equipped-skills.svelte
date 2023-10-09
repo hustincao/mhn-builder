@@ -6,6 +6,7 @@
   export let equippedSkills;
   let skills;
   let isHidden = false;
+  let width;
 
   const unsubscribe = getContext("skills").subscribe((value) => {
     skills = value;
@@ -14,11 +15,11 @@
   onDestroy(unsubscribe);
 </script>
 
-<div class="bg-gray-300 p-3 rounded-lg shrink-0">
+<div class="bg-gray-300 p-3 rounded-lg shrink-0" bind:offsetWidth={width}>
   <div class="flex items-center justify-center gap-x-2 mb-4">
     <p class="font-bold text-lg grow flex items-center justify-center gap-x-2">
       {#if !isHidden}
-      <Tooltip>
+      <Tooltip updateDependencies={width}>
         <svg
           slot="label"
           xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +81,7 @@
         {#each Object.entries(equippedSkills).sort() as [name, level], i}
           {@const skill = skills?.find((s) => s["Name"] === name)}
           {#if skill}
-            <Tooltip>
+            <Tooltip updateDependencies={width}>
               <p slot="label" class="bg-slate-50 rounded-lg px-2">
                 {name}
               </p>
@@ -93,7 +94,7 @@
         {#each Object.entries(equippedSkills).sort() as [name, level], i}
           {@const skill = skills?.find((s) => s["Name"] === name)}
           {#if skill}
-            <Tooltip updateDependencies={skills}>
+            <Tooltip updateDependencies={width}>
               <p
                 slot="label"
                 class="whitespace-nowrap bg-slate-50 rounded-lg px-2"
