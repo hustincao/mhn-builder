@@ -38,7 +38,7 @@
   const DefenseBoost = [20, 40, 60, 80, 100];
   $: defense_bonus =
     "Defense Boost" in equippedSkills
-      ? DefenseBoost[equippedSkills["Defense Boost"] - 1]
+      ? DefenseBoost[Math.min(equippedSkills["Defense Boost"], DefenseBoost.length) - 1]
       : 0;
 
   $: affinity = isNotEmpty(set.Weapon)
@@ -50,7 +50,7 @@
   const CriticalEye = [10, 15, 20, 30, 40];
   $: affinity_bonus =
     "Critical Eye" in equippedSkills
-      ? CriticalEye[equippedSkills["Critical Eye"] - 1]
+      ? CriticalEye[Math.min(equippedSkills["Critical Eye"], CriticalEye.length) - 1]
       : 0;
 
   $: attack = isNotEmpty(set.Weapon)
@@ -62,7 +62,7 @@
   const AttackBoost = [20, 40, 60, 80, 120];
   $: attack_bonus =
     "Attack Boost" in equippedSkills
-      ? AttackBoost[equippedSkills["Attack Boost"] - 1]
+      ? AttackBoost[Math.min(equippedSkills["Attack Boost"], AttackBoost.length) - 1]
       : 0;
 
   $: poison_attack =
@@ -74,7 +74,7 @@
   const PoisonAttack = [50, 75, 100, 125, 150];
   $: poison_bonus =
     "Poison Attack" in equippedSkills
-      ? PoisonAttack[equippedSkills["Poison Attack"]]
+      ? PoisonAttack[Math.min(equippedSkills["Poison Attack"], PoisonAttack.length) - 1]
       : 0;
 
   $: paralysis_attack =
@@ -87,7 +87,7 @@
   const ParalysisAttack = [50, 100, 200, 350, 500];
   $: paralysis_bonus =
     "Paralysis Attack" in equippedSkills
-      ? ParalysisAttack[equippedSkills["Paralysis Attack"]]
+      ? ParalysisAttack[Math.min(equippedSkills["Paralysis Attack"],ParalysisAttack.length) - 1]
       : 0;
   $: fire_attack =
     isNotEmpty(set.Weapon) && set.Weapon["Element"] === "Fire"
@@ -98,7 +98,7 @@
   const FireAttack = [50, 75, 100, 125, 150];
   $: fire_bonus =
     "Fire Attack" in equippedSkills
-      ? FireAttack[equippedSkills["Fire Attack"]]
+      ? FireAttack[Math.min(equippedSkills["Fire Attack"], FireAttack.length) - 1]
       : 0;
   $: water_attack =
     isNotEmpty(set.Weapon) && set.Weapon["Element"] === "Water"
@@ -109,7 +109,7 @@
   const WaterAttack = [50, 75, 100, 125, 150];
   $: water_bonus =
     "Water Attack" in equippedSkills
-      ? WaterAttack[equippedSkills["Water Attack"]]
+      ? WaterAttack[Math.min(equippedSkills["Water Attack"], WaterAttack.length) - 1]
       : 0;
   $: thunder_attack =
     isNotEmpty(set.Weapon) && set.Weapon["Element"] === "Thunder"
@@ -120,7 +120,7 @@
   const ThunderAttack = [50, 75, 100, 125, 150];
   $: thunder_bonus =
     "Thunder Attack" in equippedSkills
-      ? ThunderAttack[equippedSkills["Thunder Attack"]]
+      ? ThunderAttack[Math.min(equippedSkills["Thunder Attack"], ThunderAttack.length) -1]
       : 0;
   $: ice_attack =
     isNotEmpty(set.Weapon) && set.Weapon["Element"] === "Ice"
@@ -131,7 +131,7 @@
   const IceAttack = [50, 75, 100, 125, 150];
   $: ice_bonus =
     "Ice Attack" in equippedSkills
-      ? IceAttack[equippedSkills["Ice Attack"]]
+      ? IceAttack[Math.min(equippedSkills["Ice Attack"], IceAttack.length) - 1]
       : 0;
 </script>
 
