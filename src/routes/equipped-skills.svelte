@@ -102,9 +102,9 @@
               </p>
               <ul slot="description">
                 {@const descriptions = skill["Level Descriptions"].split(";")}
-                {@const l = Math.min(level, descriptions.length - 1)}
+                {@const l = Math.min(level, descriptions.length)}
                 {#each descriptions as d, i}
-                  <li class={i !== l - 1 && "text-slate-400"}>
+                  <li class={i !== l -1 ? "text-slate-400" : ""}>
                     {d}
                   </li>
                 {/each}
