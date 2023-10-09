@@ -95,7 +95,7 @@
           set.WeaponGrade - set.Weapon["Minimum Grade"]
         ]
       : 0;
-  const FireAttack = [50, 75, 100, 125, 150];
+  const FireAttack = [50, 100, 200, 350, 500];
   $: fire_bonus =
     "Fire Attack" in equippedSkills
       ? FireAttack[Math.min(equippedSkills["Fire Attack"], FireAttack.length) - 1]
@@ -106,7 +106,7 @@
           set.WeaponGrade - set.Weapon["Minimum Grade"]
         ]
       : 0;
-  const WaterAttack = [50, 75, 100, 125, 150];
+  const WaterAttack = [50, 100, 200, 350, 500];
   $: water_bonus =
     "Water Attack" in equippedSkills
       ? WaterAttack[Math.min(equippedSkills["Water Attack"], WaterAttack.length) - 1]
@@ -117,7 +117,7 @@
           set.WeaponGrade - set.Weapon["Minimum Grade"]
         ]
       : 0;
-  const ThunderAttack = [50, 75, 100, 125, 150];
+  const ThunderAttack = [50, 100, 200, 350, 500];
   $: thunder_bonus =
     "Thunder Attack" in equippedSkills
       ? ThunderAttack[Math.min(equippedSkills["Thunder Attack"], ThunderAttack.length) -1]
@@ -128,7 +128,7 @@
           set.WeaponGrade - set.Weapon["Minimum Grade"]
         ]
       : 0;
-  const IceAttack = [50, 75, 100, 125, 150];
+  const IceAttack = [50, 100, 200, 350, 500];
   $: ice_bonus =
     "Ice Attack" in equippedSkills
       ? IceAttack[Math.min(equippedSkills["Ice Attack"], IceAttack.length) - 1]

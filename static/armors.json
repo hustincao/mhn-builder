@@ -138,5 +138,15 @@
     "Arms Skills": "Fire Resistance Lv.1\nAttack Boost Lv.1 (Grade 6)",
     "Waist Skills": "Focus Lv.1\nFire Attack Lv.1 (Grade 6)",
     "Legs Skills": "Fire Resistance Lv.1\nWeakness Exploit Lv.1 (Grade 6)"
+  },
+  {
+    "Monster": "Pink Rathian",
+    "Tree": "Pink Rathian Set",
+    "Minimum Grade": 5,
+    "Helm Skills": "Special Boost Lv.1\nWindproof Lv.1 (Grade 6)",
+    "Mail Skills": "Dragon Attack Lv.1\nFocus Lv.1 (Grade 6)",
+    "Arms Skills": "Windproof Lv.2\nCritical Eye Lv.1 (Grade 6)",
+    "Waist Skills": "Critical Eye Lv.1",
+    "Legs Skills": "Special Boost Lv.2\nDragon Attack Lv.1 (Grade 6)"
   }
-]
+ ]
