@@ -1,9 +1,12 @@
 <script>
   import { onMount } from "svelte";
 
+  export let updateDependencies; // bindings to rerun update function on
+
   let screenWidth = 0,
     overflow = -320; // Max w xs
   let wrapperElement, tooltipWidth;
+  
 
   const updateFunction = (screenWidth, wrapperElement, tooltipWidth) => {
     if (screenWidth) {
@@ -17,7 +20,7 @@
   })
 
   $: {
-    
+    updateDependencies;
     updateFunction(screenWidth, wrapperElement, tooltipWidth);
   }
 </script>

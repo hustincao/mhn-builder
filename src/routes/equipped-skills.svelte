@@ -93,7 +93,7 @@
         {#each Object.entries(equippedSkills).sort() as [name, level], i}
           {@const skill = skills?.find((s) => s["Name"] === name)}
           {#if skill}
-            <Tooltip>
+            <Tooltip updateDependencies={skills}>
               <p
                 slot="label"
                 class="whitespace-nowrap bg-slate-50 rounded-lg px-2"
